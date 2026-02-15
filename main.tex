@@ -1,0 +1,138 @@
+\documentclass[12pt]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% setta i margini per tener conto della rilegatura 
+\usepackage[
+    a4paper,
+    margin=3cm,
+    bindingoffset=1cm,
+    lines=25,
+    includeheadfoot
+]{geometry}
+\usepackage{graphicx}
+
+\usepackage{setspace}
+\usepackage[binary-units,per-mode=symbol]{siunitx}
+\usepackage{url}
+\sisetup{list-final-separator = {, and }}
+% \usepackage[italian]{babel}
+\usepackage[capitalise]{cleveref}
+\crefname{section}{Sect.}{Sect.}
+\crefname{figure}{Fig.}{Fig.}
+\crefname{table}{Tab.}{Tab.}
+\crefname{equation}{Eq.}{Eq.}
+\Crefname{table}{Table}{Tables}
+\Crefname{equation}{Equation}{Equations}
+\crefname{equation}{Equation}{Equations}
+\def\figname{\csname cref@figure@name\endcsname\xspace}
+\def\tabname{\csname cref@table@name\endcsname\xspace}
+\def\secname{\csname cref@section@name\endcsname\xspace}
+\def\eqname{\csname cref@equation@name\endcsname\xspace}
+\def\eqpname{\csname cref@equation@name@plural\endcsname\xspace}
+\usepackage{xspace}
+\usepackage{hyphenat}
+\usepackage{listings}
+\usepackage{bytefield}
+
+% setup dei colori, nella libreria xcolor ce ne sono tantissimi altri
+\usepackage{color,soul}
+\usepackage{xcolor} 
+\definecolor{light-gray}{gray}{0.97} 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+
+% permette di usare il comando \todo{testo} per scrivere del testo in una casella arancione per indicare i to-do
+\usepackage{todonotes}
+\presetkeys{todonotes}{inline}{}
+
+% con il comando \lstinputlistings{file.txt} si può inserire codice nel testo
+\lstset{
+language=Matlab,
+breaklines=true,
+showstringspaces=false,
+backgroundcolor = \color{light-gray},
+basicstyle=\fontsize{8}{8}\selectfont\ttfamily,
+tabsize=4,
+numbers=left,
+commentstyle = \color{blue},
+keywordstyle = \color{red},
+stringstyle = \color{codegreen},
+rulecolor = \color{black},
+captionpos=b
+}
+
+\usepackage[backend=biber,style=ieee,doi=false,isbn=false,mincitenames=1,maxcitenames=4]{biblatex}
+\DeclareFieldFormat{sentencecase}{#1} % never apply sentence casing, even if bibtex field is unprotected
+\DeclareFieldFormat{titlecase}{#1} % never apply title casing, even if bibtex field is unprotected
+\addbibresource{bibliography.bib}
+\DeclareFieldFormat{titlecase}{#1} % never apply title casing, even if bibtex field is unprotected
+\addbibresource{bibliography.bib}
+\usepackage{xpatch}
+\xpatchbibmacro{textcite}{\addspace}{\addnbspace}{}{}
+\xpatchbibmacro{Textcite}{\addspace}{\addnbspace}{}{}
+\setlength\biblabelsep{.6em}
+\renewcommand{\bibfont}{\footnotesize}
+\DefineBibliographyStrings{english}{
+	andothers = et~al\adddot\addspace
+}
+
+% indica al comando \includegraphics dove andare a prendere le immagini, ovviamente si può cambiare il path a piacere se non si vuole usare ./images/
+\graphicspath{{./images/}}
+
+\usepackage{setspace}
+
+% le prossime sezioni (escluso DOCUMENT) possono essere inseriti o tolti a seconda di come piace di più esteticamente la tesi (o a seconda delle indicazioni del relatore)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%CHAPTER%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\fontsize{18}{27}\bfseries}{\thechapter}{1.5em}{}
+\titlespacing*{\chapter}{0pt}{5.5ex plus 1ex minus .2ex}{5.3ex plus .2ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%SECTION%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\section}{\normalfont\fontsize{16}{24}\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%SUBSECTION%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\subsection}{\normalfont\fontsize{13}{19}\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{1.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%SUBSUBSECTION%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{18}\itshape\bfseries}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{1.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%HEADER%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+
+\fancypagestyle{plain}{%
+    \fancyhf{}% Clear header and footer
+    \fancyfoot[C]{
+        \if\relax\thepage\else%
+            --- {\thepage} ---
+        \fi
+    }
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{plain}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       DOCUMENT                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+    \pagenumbering{gobble}
+    \input{frontespice}
+    \cleardoublepage
+    \pagenumbering{Roman}
+    \setstretch{1.5}
+
+    \newpage
+    \tableofcontents
+    \cleardoublepage
+    
+    \pagenumbering{arabic}
+
+    \input{body}
+
+    \printbibliography
+
+\end{document}
