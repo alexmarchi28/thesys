@@ -1,0 +1,19 @@
+
+
+Qui si inserisce il contenuto; è comodo mettere
+\begin{verbatim}
+    \chapter{titolo del capitolo}
+    \input{file_contenente_il_testo_del_capitolo.tex}
+    \chapter{secondo }
+\end{verbatim}
+
+così da gestire gestire separatamente i vari capitoli e non avere un file unico troppo lungo da gestire.
+
+Tutte le immagini devono essere messe nella cartella \texttt{images} (o in quella indicata come \texttt{graphicspath} nel file \texttt{main.tex}) e poi possono essere inserite comodamente nel testo con il comando: 
+\begin{verbatim}
+    \includegraphics[width=.5\textwidth]{nome_file.png}
+\end{verbatim}
+
+Per le citazioni è sufficiente fare \cite{felix20},\cite{} inserendo come argomento del comando \verb|\cite| lo stesso nome della citazione che è stato usato nel file \texttt{bib}. Se non si inserisce alcuna citaziona nel testo col comando \verb|\cite| non verrà generata alcuna bibliografia.
+
+\cite{segata2023multi-technology}   

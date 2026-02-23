@@ -1,16 +1,78 @@
-\chapter{Prova}
+\chapter{Introduzione}
 
-Qui si inserisce il contenuto; è comodo mettere
-\begin{verbatim}
-    \chapter{titolo del capitolo}
-    \input{file_contenente_il_testo_del_capitolo.tex}
-\end{verbatim}
+\section{Contesto: V2X e guida cooperativa}
+\section{Motivazioni e problema dell'affidabilità del canale}
+\section{Obiettivi della tesi}
+\section{Contributi del lavoro}
+\section{Struttura della tesi}
 
-così da gestire gestire separatamente i vari capitoli e non avere un file unico troppo lungo da gestire.
 
-Tutte le immagini devono essere messe nella cartella \texttt{images} (o in quella indicata come \texttt{graphicspath} nel file \texttt{main.tex}) e poi possono essere inserite comodamente nel testo con il comando: 
-\begin{verbatim}
-    \includegraphics[width=.5\textwidth]{nome_file.png}
-\end{verbatim}
+\input{state_of_the_art/state_of_the_art}
 
-Per le citazioni è sufficiente fare \cite{felix20}, inserendo come argomento del comando \verb|\cite| lo stesso nome della citazione che è stato usato nel file \texttt{bib}. Se non si inserisce alcuna citaziona nel testo col comando \verb|\cite| non verrà generata alcuna bibliografia.
+
+
+\chapter{Ambiente di sviluppo}
+
+\section{Simulazione a eventi discreti per reti veicolari}
+\section{OMNeT++: architettura e workflow sperimentale}
+\section{Veins e integrazione con SUMO tramite TraCI}
+\section{Plexe: simulazione del platooning e scenari}
+\section{Simu5G: modellazione della rete cellulare 5G}
+\section{Riproducibilità degli esperimenti}
+
+
+\chapter{Preparazione dell’ambiente sperimentale}
+
+\section{Organizzazione del progetto e dipendenze software}
+\section{Compilazione e configurazione dell’ambiente}
+\section{Struttura delle simulazioni (NED, INI, SUMO)}
+\section{Validazione del corretto funzionamento dell’ambiente}
+\section{Automazione delle esecuzioni e gestione degli output}
+
+
+\chapter{Importazione logica}
+
+\section{Panoramica del progetto di riferimento}
+\section{Importazione degli scenari sperimentali}
+\section{Integrazione della metrica Packet Delivery Ratio (PDR)}
+\section{Implementazione della logica SafeSwitch}
+\section{Integrazione con il modulo di platooning}
+\section{Verifica di coerenza e validazione preliminare}
+
+
+\chapter{Simu5G in plexe\_hetnet}
+
+\section{Motivazioni}
+\section{Architettura originaria}
+\section{Modifiche a moduli e interfacce}
+\section{Configurazione del modello radio 5G}
+\section{Integrazione multi-interfaccia}
+\section{Test di regressione e validazione funzionale}
+
+
+\chapter{Piano sperimentale}
+
+\section{Descrizione degli scenari}
+\section{Parametri principali della simulazione}
+\section{Configurazioni di comunicazione}
+\section{Metriche raccolte}
+\section{Protocollo di esecuzione e repliche}
+\section{Pipeline di post-processing e plotting}
+
+
+\chapter{Risultati e discussione}
+
+\section{Analisi della dinamica del platoon}
+\section{Impatto della logica SafeSwitch}
+\section{Confronto con SimuLTE}
+\section{Analisi di sensibilità ai parametri}
+\section{Discussione critica dei risultati}
+
+
+\chapter{Conclusioni e sviluppi futuri}
+
+\section{Sintesi dei contributi}
+\section{Implicazioni per sistemi V2X reali}
+\section{Limiti del lavoro}
+\section{Sviluppi futuri}
+

@@ -13,7 +13,7 @@
 \usepackage{graphicx}
 
 \usepackage{setspace}
-\usepackage[binary-units,per-mode=symbol]{siunitx}
+\usepackage[per-mode=symbol]{siunitx}
 \usepackage{url}
 \sisetup{list-final-separator = {, and }}
 % \usepackage[italian]{babel}
@@ -124,7 +124,9 @@ captionpos=b
     \cleardoublepage
     \pagenumbering{Roman}
     \setstretch{1.5}
-
+    
+    \input{summary.tex}
+    
     \newpage
     \tableofcontents
     \cleardoublepage
