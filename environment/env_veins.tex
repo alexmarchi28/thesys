@@ -1,0 +1,23 @@
+\section{Veins e integrazione con SUMO tramite TraCI}
+\label{env:veins}
+
+Veins è il framework che abilita l’integrazione tra simulazione di rete in OMNeT++ e simulazione del traffico stradale, rendendo possibile una co-simulazione bidirezionale in cui mobilità e comunicazione si influenzano reciprocamente. Tale impostazione si colloca nella linea metodologica proposta dalla letteratura sulla simulazione accoppiata rete-traffico, che evidenzia come l’analisi di applicazioni IVC/V2X risulti molto più credibile quando il comportamento del canale e quello del traffico sono simulati congiuntamente \cite{sommer2011bidirectionally,eckhoff2012multichannel}.
+
+Nel workflow di questa tesi, Veins svolge due funzioni principali:
+\begin{itemize}
+\item fornisce l’infrastruttura di accoppiamento tra OMNeT++ e SUMO;
+\item mette a disposizione modelli e componenti utili per scenari vehicular networking (in particolare nel contesto IEEE~802.11p/ITS).
+\end{itemize}
+La co-simulazione è mediata dall’interfaccia TraCI (\emph{Traffic Control Interface}), che consente lo scambio di informazioni tra i due simulatori durante l’esecuzione. In termini pratici, OMNeT++ può ricevere da SUMO informazioni aggiornate sulla posizione e sullo stato dei veicoli, mentre SUMO può essere influenzato da decisioni o logiche applicative modellate nel dominio di rete/controllo.
+
+TraCI è un elemento centrale per gli esperimenti di platooning perché permette di mantenere consistenza tra:
+\begin{itemize}
+\item la mobilità microscopica del veicolo nel simulatore stradale;
+\item lo stato dei nodi nel simulatore di rete;
+\item le logiche di controllo e comunicazione implementate ai livelli superiori.
+\end{itemize}
+Senza questo accoppiamento, sarebbe difficile riprodurre in modo credibile fenomeni come formazione/disgregazione del platoon, impatto delle perdite sulla distanza inter-veicolare o variazioni della connettività dovute alla geometria dello scenario.
+
+Per quanto riguarda SUMO, il suo ruolo è quello di simulatore di traffico microscopico, ampiamente adottato nella comunità ITS per la definizione di scenari stradali riproducibili e configurabili \cite{alvarez2018microscopic}. In questa tesi SUMO non è usato come strumento isolato, ma come componente integrata nella co-simulazione: la sua funzione principale è fornire la dinamica di mobilità dello scenario, mentre la dinamica di comunicazione e parte della logica applicativa sono gestite sul lato OMNeT++/Veins/PLEXE.
+
+In sintesi, Veins e TraCI costituiscono il “ponte” operativo tra rete e traffico. La loro presenza nell’ambiente di sviluppo è ciò che rende possibile, nei capitoli successivi, studiare il comportamento del sistema multi-interfaccia in scenari realistici e con metriche direttamente rilevanti per il platooning, anziché limitarsi a una valutazione puramente di rete.
