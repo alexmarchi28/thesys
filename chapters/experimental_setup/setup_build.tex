@@ -44,7 +44,7 @@ cmake --build build -j$(nproc)
 
 Per gli altri componenti è stata seguita la documentazione ufficiale, con particolare riferimento alle istruzioni di \texttt{plexe\_5g} per la catena INET $\rightarrow$ Simu5G $\rightarrow$ Veins $\rightarrow$ Plexe \cite{plexe_5g_readme,plexe_building}.
 
-\begin{lstlisting}[caption={Sequenza di compilazione dei framework OMNeT++-based},label={lst:framework_build}]
+\begin{lstlisting}[caption={Sequenza di compilazione dei framework OMNeT++ based},label={lst:framework_build}]
 # INET
 git clone https://github.com/inet-framework/inet
 cd inet/
@@ -74,7 +74,7 @@ source setenv
 ./configure
 make -j <ncores>
 
-# veins\_inet
+# veins_inet
 cd subprojects/veins_inet/
 ./configure
 make -j <ncores>
@@ -93,5 +93,3 @@ cd subprojects/plexe\_5g
 make -j <ncores>
 
 \end{lstlisting}
-
-Nel caso del tutorial \emph{Example 6} (HetNet), la documentazione ufficiale segnala esplicitamente che il modulo non è più mantenuto nella linea principale di sviluppo; per questa ragione, nella tesi è stato trattato come riferimento logico e non come baseline ``plug-and-play'' \cite{plexe_example6}.

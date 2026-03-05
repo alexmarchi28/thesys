@@ -5,37 +5,26 @@ La validazione iniziale è stata impostata come \emph{smoke test} progressivo: p
 I tutorial ufficiali forniscono configurazioni utili per un controllo rapido della pipeline end-to-end \cite{plexe_tutorial,plexe_example6}. I comandi utilizzati sono del tipo:
 
 \begin{lstlisting}[caption={Esecuzione di scenari tutorial da CLI (Cmdenv)},label={lst:smoke_commands}]
+# Test Plexe / Veins (802.11p)
 cd /path/to/plexe/examples/platooning
-./run -u Cmdenv -c BrakingScenario
-./run -u Cmdenv -c BrakingScenarioWithApp
+plexe_run -u Cmdenv -c Sinusoidal -r 2
 
-cd /path/to/plexe/examples/plexe_veins
-./run -u Cmdenv -c LanradioScenario
-./run -u Cmdenv -c HeterogeneousScenario
+Test plexe_vlc
+cd /path/to/plexe/subprojects/plexe_vlc/examples/plexe_vlc
+./run -u Cmdenv -c Sinusoidal -r 0
+
+# Test plexe_5g / Simu5G
+cd /path/to/plexe/subprojects/plexe_5g/examples/platooning_5g
+./run -u Cmdenv -c CV2XMerge -r 0
+cd ../platooning_mec
+./run -u Cmdenv -c Overtake -r 0
+
 \end{lstlisting}
 
-In questa fase la verifica non è solo ``la simulazione parte'', ma include almeno:
+In questa fase la verifica non è solo ``la simulazione parte'', ma include:
 \begin{itemize}
-\item assenza di errori di linkage o moduli OMNeT++ non risolti;
+\item verifica della comunicazione intra-platoon utilizzando il debugger presente in OMNeT++;
 \item handshake corretto TraCI tra OMNeT++ e SUMO;
 \item generazione dei file \texttt{.sca}/\texttt{.vec} e log coerenti con la configurazione selezionata;
-\item comportamento dinamico plausibile del plotone (assenza di artefatti macroscopici dovuti a mismatch di configurazione).
+\item comportamento dinamico plausibile del plotone.
 \end{itemize}
-
-Per ridurre il tempo di diagnosi, è stato utile introdurre un test automatico minimo che esegue un set ristretto di configurazioni e fallisce alla prima anomalia:
-
-\begin{lstlisting}[caption={Script minimale di smoke validation},label={lst:smoke_script}]
-#!/usr/bin/env bash
-set -euo pipefail
-
-SCENARIOS=("BrakingScenario" "BrakingScenarioWithApp")
-LOGDIR="logs/smoke"
-mkdir -p "$LOGDIR"
-
-for cfg in "${SCENARIOS[@]}"; do
-  echo "[SMOKE] running $cfg"
-  ./run -u Cmdenv -c "$cfg" -r 0 > "$LOGDIR/$cfg.log" 2>&1
-done
-
-echo "[SMOKE] completed"
-\end{lstlisting}
