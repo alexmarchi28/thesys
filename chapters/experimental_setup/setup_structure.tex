@@ -1,0 +1,49 @@
+\section{Struttura delle simulazioni (NED, INI, SUMO)}
+
+Una volta completata la compilazione, la configurazione sperimentale è stata organizzata lungo tre assi:
+\begin{itemize}
+\item topologia e moduli OMNeT++ (file NED);
+\item parametrizzazione degli esperimenti (file \texttt{omnetpp.ini});
+\item mobilità microscopica (file SUMO: \texttt{.sumocfg}, \texttt{.net.xml}, \texttt{.rou.xml}).
+\end{itemize}
+
+La separazione tra questi livelli consente di modificare scenari e politiche senza alterare il codice C++ dei moduli.
+
+\begin{lstlisting}[caption={Schema semplificato di rete NED per co-simulazione},label={lst:ned_skeleton}]
+network PlatooningScenario
+{
+    submodules:
+        manager: TraCIScenarioManagerLaunchd;
+        node[NUM_CARS]: Car;
+        rsu: RoadSideUnit;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Estratto tipo di configurazione INI multi-interfaccia},label={lst:ini_skeleton}]
+[General]
+network = PlatooningScenario
+sim-time-limit = 200s
+
+# OMNeT++ / Veins / TraCI
+*.manager.updateInterval = 0.1s
+*.manager.host = "localhost"
+*.manager.moduleType = "org.car2x.plexe.Car"
+
+# Output
+output-scalar-file = ${resultdir}/${configname}-${runnumber}.sca
+output-vector-file = ${resultdir}/${configname}-${runnumber}.vec
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Estratto tipo di configurazione SUMO},label={lst:sumo_cfg_skeleton}]
+<configuration>
+  <input>
+    <net-file value="highway.net.xml"/>
+    <route-files value="platoon.rou.xml"/>
+  </input>
+  <time>
+    <step-length value="0.1"/>
+  </time>
+</configuration>
+\end{lstlisting}
+
+Nel workflow adottato, la coerenza tra INI e SUMO è stata verificata su tre punti: identificativi dei veicoli, durata della simulazione e passo temporale. In assenza di tale allineamento, la simulazione può avviarsi correttamente ma produrre traiettorie o metriche non confrontabili tra run.

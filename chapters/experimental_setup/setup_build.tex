@@ -1,0 +1,97 @@
+\section{Compilazione e configurazione dell’ambiente}
+
+La sequenza di build adottata è riportata in questa sezione in forma riproducibile. L’ordine è importante perché alcuni progetti richiedono artefatti compilati da dipendenze precedenti.
+
+\subsection{OMNeT++ 6.2}
+
+Per OMNeT++ è stato seguito il flusso ufficiale basato su \texttt{install.sh} e successiva compilazione locale \cite{omnet_download,omnet_versions}. Un esempio minimale è riportato di seguito.
+
+\begin{lstlisting}[caption={Installazione e build OMNeT++ 6.2},label={lst:omnet_build}]
+tar -xvf omnetpp-6.2.0-src-linux.tgz
+cd omnetpp-6.2.0
+
+# Installa dipendenze e crea il virtualenv Python
+# Esegue in automatico anche configurazione, compilazione e importazione delle variabili d'ambiente
+./install.sh
+\end{lstlisting}
+
+\subsection{SUMO 1.20 con dipendenze aggiornate}
+
+Il workflow usato in tesi è stato:
+\begin{enumerate}
+\item installare le dipendenze indicate dal repository SUMO corrente;
+\item fare checkout della versione 1.20;
+\item compilare da sorgente con CMake.
+\end{enumerate}
+
+\begin{lstlisting}[caption={Build SUMO 1.20 con dipendenze dal repository ufficiale},label={lst:sumo_build}]
+git clone https://github.com/eclipse-sumo/sumo.git
+cd sumo
+
+# Dipendenze (repository ufficiale SUMO)
+sudo apt-get install \$(cat build_config/build_req_deb.txt build_config/tools_req_deb.txt)
+
+# Passaggio alla versione 1.20 (v1.20 nome arbitrario per il branch creato)
+git checkout -b v1.20 v1\_20\_0
+
+# Compilazione
+cmake -B build .
+cmake --build build -j$(nproc)
+
+\end{lstlisting}
+
+\subsection{INET, Simu5G, Veins, Plexe e sotto-progetti}
+
+Per gli altri componenti è stata seguita la documentazione ufficiale, con particolare riferimento alle istruzioni di \texttt{plexe\_5g} per la catena INET $\rightarrow$ Simu5G $\rightarrow$ Veins $\rightarrow$ Plexe \cite{plexe_5g_readme,plexe_building}.
+
+\begin{lstlisting}[caption={Sequenza di compilazione dei framework OMNeT++-based},label={lst:framework_build}]
+# INET
+git clone https://github.com/inet-framework/inet
+cd inet/
+git checkout -b inet_v4.5.4 v4.5.4
+source setenv
+
+make makefiles
+make -j <ncores> MODE=release
+make -j <ncores> MODE=debug
+
+# Simu5G (branch indicato da plexe_5g)
+git clone https://github.com/michele-segata/Simu5G/ simu5g
+cd simu5g/
+git checkout plexe_mec
+source setenv
+
+make makefiles
+make -j <ncores> MODE=release
+make -j <ncores> MODE=debug
+
+# Veins (+ eventuale sotto-progetto veins_inet)
+git clone https://github.com/sommer/veins/
+cd veins/
+git checkout -b veins_v5.3.1 veins-5.3.1
+source setenv
+
+./configure
+make -j <ncores>
+
+# veins\_inet
+cd subprojects/veins_inet/
+./configure
+make -j <ncores>
+
+# Plexe + subprojects
+git clone https://github.com/michele-segata/plexe
+cd plexe/
+git checkout -b plexe_v3.2 plexe-3.2
+source setenv
+
+./configure
+make -j <ncores>
+
+cd subprojects/plexe\_5g
+./configure
+make -j <ncores>
+
+\end{lstlisting}
+
+Nel caso del tutorial \emph{Example 6} (HetNet), la documentazione ufficiale segnala esplicitamente che il modulo non è più mantenuto nella linea principale di sviluppo; per questa ragione, nella tesi è stato trattato come riferimento logico e non come baseline ``plug-and-play'' \cite{plexe_example6}.

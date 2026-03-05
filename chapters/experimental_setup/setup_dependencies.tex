@@ -1,0 +1,26 @@
+\section{Organizzazione del progetto e dipendenze software}
+
+La preparazione dell’ambiente è stata eseguita in una directory di lavoro unica, separando i framework principali dai sotto-progetti PLEXE dedicati a VLC e 5G. Questa scelta facilita sia la build incrementale sia la tracciabilità delle versioni usate.
+
+\begin{lstlisting}[caption={Layout di riferimento del workspace locale},label={lst:workspace_layout}]
+~/src/
+  omnetpp-6.2/
+  sumo/
+  inet/
+  simu5g/
+  veins/
+    subprojects/
+      veins_vlc/
+  plexe/
+    subprojects/
+      plexe_vlc/
+      plexe_5g/
+      plexe_hetnet/
+\end{lstlisting}
+
+Le dipendenze e le compatibilità di base sono state determinate incrociando: pagina \emph{Building} di Plexe, tutorial ufficiali, README dei sotto-progetti \texttt{plexe\_vlc} e \texttt{plexe\_5g}, repository SUMO e pagina download di OMNeT++ \cite{plexe_building,plexe_tutorial,plexe_vlc_readme,plexe_5g_readme,sumo_repo,omnet_download}. In particolare:
+\begin{itemize}
+\item per SUMO è stato adottato il workflow ``dipendenze dell’ultima versione + checkout della versione 1.20'' prima della compilazione;
+\item per OMNeT++ 6.2 è stato utilizzato lo script \texttt{./install.sh} del pacchetto sorgente, che automatizza dipendenze di sistema, pacchetti Python e virtual environment \cite{omnet_download};
+\item per Veins, Plexe, Simu5G, INET e sotto-progetti Plexe sono state seguite le indicazioni operative ufficiali dei rispettivi README/tutorial \cite{plexe_building,plexe_vlc_readme,plexe_5g_readme}.
+\end{itemize}
