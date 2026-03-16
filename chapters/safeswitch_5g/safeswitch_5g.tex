@@ -1,0 +1,15 @@
+\chapter{Safeswitch e 5G}
+\label{ch:safeswitch_5g}
+
+Questo capitolo entra nella parte di integrazione del lavoro, concentrandosi su come l'impostazione di Segata \emph{et al.} \cite{segata2023multi-technology} sia stata riportata nel progetto usato per la tesi. L'attenzione non e` quindi sul quadro generale del platooning multi-tecnologia, gia` discusso nei capitoli precedenti, ma sulla sua traduzione operativa.
+
+La prima parte descrive \emph{SafeSwitch} a livello di funzionamento, con attenzione al monitoraggio del PDR, alla macchina a stati e al controllo del gap. La seconda parte riguarda invece la sostituzione della componente cellulare LTE con Simu5G all'interno di \texttt{plexe\_hetnet}, mantenendo invariato il ruolo della gamba cellulare nella logica multi-tecnologia.
+
+La trattazione resta a un livello intermedio: abbastanza vicina all'implementazione da chiarire che cosa e` stato importato e modificato, ma senza scendere nel dettaglio del codice.
+
+\input{chapters/safeswitch_5g/s5g_architecture}
+\input{chapters/safeswitch_5g/s5g_monitoring}
+\input{chapters/safeswitch_5g/s5g_fsm}
+\input{chapters/safeswitch_5g/s5g_gap}
+\input{chapters/safeswitch_5g/s5g_plexe_hetnet}
+\input{chapters/safeswitch_5g/s5g_simu5g}

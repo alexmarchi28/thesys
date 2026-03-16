@@ -1,0 +1,7 @@
+\section{Architettura multi-tecnologia del sistema di riferimento}
+
+Il sistema di riferimento e` quello descritto da Segata \emph{et al.} \cite{segata2023multi-technology}. Ogni veicolo del platoon dispone simultaneamente di tre interfacce di comunicazione, 802.11p, VLC e componente cellulare, e i beacon vengono trasmessi in parallelo sulle tecnologie attive. Il follower usa poi le informazioni ricevute dal leader e dal predecessore insieme ai sensori locali per regolare la propria dinamica longitudinale.
+
+Nel seguito interessa soprattutto un punto: queste interfacce non sono trattate come semplice ridondanza passiva. Il numero di tecnologie ritenute affidabili determina infatti quale stato operativo del platoon possa essere mantenuto, e quindi quale controllore e quale gap siano ammissibili in quel momento. La logica di \emph{SafeSwitch} si innesta esattamente su questa relazione tra connettivita`, controllo e distanza inter-veicolare.
+
+Questa struttura e` stata mantenuta anche nella replica sviluppata per la tesi. Cambia invece la realizzazione della terza interfaccia: al posto della componente LTE del lavoro originario viene usata una integrazione basata su Simu5G, conservando lo stesso ruolo funzionale all'interno del sistema multi-tecnologia.

@@ -1,0 +1,9 @@
+\section{Passaggio da LTE a 5G con Simu5G}
+
+Gli aspetti generali di Simu5G sono gia` stati richiamati nel capitolo dedicato all'ambiente di sviluppo; qui interessa il suo uso concreto all'interno di \texttt{plexe\_hetnet}. Nel paper di riferimento la componente cellulare del sistema multi-tecnologia e` LTE C-V2X; nella replica sviluppata per questa tesi essa viene sostituita con una modellazione 5G, mantenendo invariata la logica di \emph{SafeSwitch} \cite{segata2023multi-technology}.
+
+La migrazione ha richiesto di rivedere la porzione cellulare del sotto-progetto, sostituendo la configurazione e i moduli LTE con gli elementi della nuova architettura 5G e riallineando alla nuova libreria gli aspetti legati a infrastruttura, parametri radio e handover \cite{virdis2014simulte,nardini2020simu5g}. Il punto non e` soltanto usare Simu5G, ma far si' che la nuova interfaccia continui a convivere correttamente con 802.11p e VLC nello stesso scenario multi-tecnologia.
+
+Dal punto di vista funzionale, la nuova interfaccia 5G continua a occupare lo stesso ruolo che nel paper era assegnato alla componente LTE: e` una delle sorgenti di connettivita` osservate dal monitor PDR e una delle tecnologie che possono sostenere, o al contrario non riuscire piu` a sostenere, lo stato corrente del platoon. Questo mantiene leggibile il confronto con il lavoro originario: la politica di \emph{fallback} e \emph{recovery} resta la stessa, mentre cambia il substrato cellulare su cui viene valutata.
+
+Il risultato finale non e` quindi un nuovo algoritmo di controllo, ma una replica aggiornata dell'impostazione del paper. La novita` piu` rilevante e` che \texttt{plexe\_hetnet}, nato con componente cellulare LTE, viene esteso a una configurazione 5G che prima non era disponibile, rendendo possibile verificare lo stesso meccanismo in un ambiente simulativo piu` attuale.
