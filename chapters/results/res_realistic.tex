@@ -1,0 +1,13 @@
+\section{Scenario realistico: LTE vs 5G}
+
+Questo scenario è caratterizzato dalla presenza di due Road Side Units (RSU) utilizzare per generare un interferenza sull'interfaccia 802.11p e analizzare il comportamento del platoon sotto interferenze. Sono anche presenti due stazioni radio 5G, poste in modo tale da avere anche degli handover 5G.
+
+In questo scenario non poniano l'attenzione solo sulla dinamica del platoon (accellerazione e distanza), ma anche sulla qualità delle comunicazioni. Utilizzeremo come metrica la Frame Error Rate (FER), un'unità di misura calcolata nel seguente modo FER = (frame_attesi - frame_arrivati) / frame_attesi.
+
+\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
+\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
+\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
+\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
+\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
+
+Molta attenzione è stata posta sull'avere un confronto quanto più fair possibile tra lo scenario simulativo dell'articolo di riferimento, e il nuovo scenario con 5G. Valori di potenza delle interfacce, tempi di handover, quantità di interferenze, frequenza di comunicazione, tutto è stato impostato allo stesso valore dell'articolo. Avendo avuto un cambiamento di interfaccia, e soprattutto un cambiamento di modellazione (da SimuLTE a Simu5G), anche i valori di default del modello sono cambiati tra le due implementazioni. Risulta quindi molto difficile avere la certezza di aver replicato esattamente tutti i valori. Lo scenario dell'articolo usa volutamente molti valori presi dal default di SimuLTE, proprio perché lo scopo di questo scenario non era essere replicato, ma più dare un'idea del comportamento del sistema in uno scenario più realistico.

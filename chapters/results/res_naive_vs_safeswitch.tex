@@ -1,0 +1,11 @@
+\section{Analisi }
+Per dinamica naive si intende una dinamica di platoon in cui, quando la qualità della connessione scende sotto una certa soglia, i veicoli passano direttamente da una logica CACC ad una logica ACC, senza un passaggio gradule come si avrebbe nel caso di SafeSwitch.
+
+Il problema di un approccio di questo tipo è che, il passaggio ad ACC avviene quando ancora i veicolo non sono abbastanza distanti. I veicoli sono fuori dalla loro zona di lavoro sicura, e una eventuale frenata di emergenza porta a uno scontro tra i veicoli. Questo è dato dal fatto che il controllore ACC ha dei margini di sicurezza differenti da quelli di un controllore CACC (PATH, Ploeg), questo perché i controllori CACC sono più performanti, ma hanno anche una richiesta di informazioni maggiore.
+
+\includegraphics[width=.5\textwidth]{confronto_naive_safeswitch_0.pdf}
+\includegraphics[width=.5\textwidth]{confronto_naive_safeswitch_1.pdf}
+\includegraphics[width=.5\textwidth]{confronto_naive_safeswitch_2.pdf}
+\includegraphics[width=.5\textwidth]{confronto_naive_safeswitch_3.pdf}
+
+Come si può notare dai risultati, il meccanismo di Safeswitch, oltre a dare sicurezza al platoon, permette di avere accellerazioni minori a parità di scenario, il ché porta a maggiore comfort percepito dal passeggero.
