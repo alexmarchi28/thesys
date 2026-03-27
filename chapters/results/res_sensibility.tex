@@ -2,54 +2,54 @@
 
 Per valutare quanto i risultati dello scenario realistico dipendano dal modello fisico sottostante, e` stata svolta una breve analisi di sensibilita` sulle due componenti principali del canale radio: \emph{shadowing} e \emph{fading}. Sono stati considerati quattro casi: entrambe le componenti attive, solo \emph{shadowing}, solo \emph{fading}, e assenza di entrambe. L'obiettivo non e` stimare un set ``migliore'' di parametri, ma capire quali fenomeni restino stabili al variare del modello di propagazione e quali, invece, cambino in modo sostanziale.
 
-\begin{figure}[tbp]
+\begin{figure}[htbp]
 \centering
 \begin{minipage}[t]{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/fading_shadowing/interference-front-fer-4.pdf}
+\includegraphics[width=\linewidth]{sensibility-front-fading-shadowing.pdf}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/shadowing/interference-front-fer-4.pdf}
+\includegraphics[width=\linewidth]{sensibility-front-shadowing.pdf}
 \end{minipage}
 
 \vspace{0.8em}
 
 \begin{minipage}[t]{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/fading/interference-front-fer-4.pdf}
+\includegraphics[width=\linewidth]{sensibility-front-fading.pdf}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/none/interference-front-fer-4.pdf}
+\includegraphics[width=\linewidth]{sensibility-front-none.pdf}
 \end{minipage}
 \caption{FER dei frame provenienti dal predecessore al variare delle ipotesi di canale. In alto a sinistra sono attivi sia \emph{shadowing} sia \emph{fading}; in alto a destra e` attivo solo lo \emph{shadowing}; in basso a sinistra e` attivo solo il \emph{fading}; in basso a destra entrambe le componenti sono disattivate.}
 \end{figure}
 
-\begin{figure}[tbp]
+\begin{figure}[htbp]
 \centering
 \begin{minipage}[t]{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/fading_shadowing/interference-leader-fer-4.pdf}
+\includegraphics[width=\linewidth]{sensibility-leader-fading-shadowing.pdf}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/shadowing/interference-leader-fer-4.pdf}
+\includegraphics[width=\linewidth]{sensibility-leader-shadowing.pdf}
 \end{minipage}
 
 \vspace{0.8em}
 
 \begin{minipage}[t]{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/fading/interference-leader-fer-4.pdf}
+\includegraphics[width=\linewidth]{sensibility-leader-fading.pdf}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.49\textwidth}
 \centering
-\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/none/interference-leader-fer-4.pdf}
+\includegraphics[width=\linewidth]{sensibility-leader-none.pdf}
 \end{minipage}
 \caption{FER dei frame provenienti dal leader al variare delle ipotesi di canale. Anche qui i quattro quadranti rappresentano, nell'ordine, il caso con \emph{shadowing} e \emph{fading} attivi, il caso con solo \emph{shadowing}, il caso con solo \emph{fading} e il caso senza entrambe le componenti stocastiche.}
 \end{figure}
