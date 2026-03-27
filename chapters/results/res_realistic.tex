@@ -1,13 +1,37 @@
-\section{Scenario realistico: LTE vs 5G}
+\section{Scenario realistico: confronto con l'articolo e ruolo del 5G}
 
-Questo scenario è caratterizzato dalla presenza di due Road Side Units (RSU) utilizzare per generare un interferenza sull'interfaccia 802.11p e analizzare il comportamento del platoon sotto interferenze. Sono anche presenti due stazioni radio 5G, poste in modo tale da avere anche degli handover 5G.
+Lo scenario realistico e` quello piu` interessante per valutare la trasferibilita` dell'architettura a una toolchain aggiornata. Riprende infatti l'impostazione dell'articolo di riferimento: un circuito chiuso con due zone di interferenza su IEEE~802.11p e una componente cellulare soggetta a handover \cite{segata2023multi-technology}. Nella reimplementazione proposta in questa tesi la parte cellulare non e` piu` modellata tramite SimuLTE/LTE, ma tramite Simu5G e una componente 5G integrata in \texttt{plexe\_hetnet}. L'obiettivo del confronto non e` quindi ottenere una coincidenza numerica perfetta, difficilmente realizzabile dopo una migrazione di stack, ma verificare se restino riconoscibili le stesse relazioni causali tra comunicazione, logica di fallback e dinamica del platoon.
 
-In questo scenario non poniano l'attenzione solo sulla dinamica del platoon (accellerazione e distanza), ma anche sulla qualità delle comunicazioni. Utilizzeremo come metrica la Frame Error Rate (FER), un'unità di misura calcolata nel seguente modo FER = (frame_attesi - frame_arrivati) / frame_attesi.
+Per rendere il confronto leggibile, nelle figure il pannello sinistro riporta l'andamento mostrato dall'articolo, mentre il pannello destro riporta i risultati ottenuti in questa tesi. Nei grafici della FER la banda centrale mantiene l'etichetta ``C-V2X'' per continuita` con gli script originali, ma nel pannello di destra corrisponde alla componente 5G modellata con Simu5G.
 
-\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
-\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
-\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
-\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
-\includegraphics[width=.5\textwidth]{confronto_naive.pdf}
+\subsection{Dinamica del platoon}
 
-Molta attenzione è stata posta sull'avere un confronto quanto più fair possibile tra lo scenario simulativo dell'articolo di riferimento, e il nuovo scenario con 5G. Valori di potenza delle interfacce, tempi di handover, quantità di interferenze, frequenza di comunicazione, tutto è stato impostato allo stesso valore dell'articolo. Avendo avuto un cambiamento di interfaccia, e soprattutto un cambiamento di modellazione (da SimuLTE a Simu5G), anche i valori di default del modello sono cambiati tra le due implementazioni. Risulta quindi molto difficile avere la certezza di aver replicato esattamente tutti i valori. Lo scenario dell'articolo usa volutamente molti valori presi dal default di SimuLTE, proprio perché lo scopo di questo scenario non era essere replicato, ma più dare un'idea del comportamento del sistema in uno scenario più realistico.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{confronto_acceleration.pdf}
+\vspace{0.5em}
+\includegraphics[width=\textwidth]{confronto_distance.pdf}
+\caption{Confronto tra articolo di riferimento e reimplementazione della tesi nello scenario realistico. In alto sono riportate le accelerazioni, in basso le distanze inter-veicolari.}
+\label{fig:realistic_dynamics_compare}
+\end{figure}
+
+La Figura~\ref{fig:realistic_dynamics_compare} mostra che il comportamento globale del platoon resta coerente tra i due lavori. In entrambi i casi i burst di perdita associati alle zone di interferenza producono un aumento temporaneo del gap, seguito da una fase di ricompattamento quando la qualita` della comunicazione torna sufficiente. Anche i transitori legati alla componente cellulare restano relativamente brevi e non innescano instabilita` permanenti.
+
+Le differenze quantitative, pero`, sono evidenti. Nell'articolo alcuni veicoli in coda raggiungono distanze molto elevate nella seconda meta` della simulazione, mentre nella reimplementazione corrente i picchi risultano piu` contenuti e il ritorno verso il gap nominale avviene prima. Anche le accelerazioni osservate nel pannello destro sono, nel complesso, meno pronunciate. L'interpretazione piu` plausibile e` che il passaggio da SimuLTE a Simu5G, insieme ai diversi valori di default dei modelli fisici e di handover, abbia modificato la durata e la correlazione temporale delle perdite, pur lasciando invariata la logica superiore di \emph{SafeSwitch}. In altre parole, il meccanismo reagisce ancora agli stessi tipi di eventi, ma la severita` del transitorio non coincide piu` punto per punto.
+
+\subsection{FER e qualita` del collegamento}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{confronto_front_fer.pdf}
+\vspace{0.5em}
+\includegraphics[width=\textwidth]{confronto_leader_fer.pdf}
+\caption{Confronto della FER nello scenario realistico. In alto e` riportata la FER dei frame provenienti dal predecessore, in basso quella dei frame del leader.}
+\label{fig:realistic_fer_compare}
+\end{figure}
+
+Le curve di FER in Figura~\ref{fig:realistic_fer_compare} aiutano a leggere le differenze appena discusse. La tecnologia IEEE~802.11p continua a mostrare burst di perdite localizzati nelle stesse finestre temporali, coerenti con il passaggio nelle zone di interferenza. La componente cellulare, invece, presenta soprattutto spike brevi e concentrati in corrispondenza degli handover, senza produrre perdite prolungate. Questo comportamento e` compatibile con l'idea che gli handover restino una sorgente di transitori, ma non rappresentino il principale fattore di degrado della dinamica.
+
+Il confronto con l'articolo mette in evidenza soprattutto una differenza sulla VLC. Nel lavoro originale la FER della VLC cresce fortemente nella seconda meta` della simulazione, fino a saturare per alcuni veicoli; nella reimplementazione della tesi questo effetto e` molto piu` attenuato. Poiche' la VLC e` particolarmente sensibile alla distanza e alla linea di vista, questa divergenza suggerisce che il feedback tra aumento del gap e perdita della connettivita` ottica, pur ancora presente come meccanismo teorico, si manifesti in modo meno drastico nel nuovo stack simulativo. Anche questo punto e` coerente con l'ipotesi di una diversa severita` dei burst radio e non con un malfunzionamento della logica di \emph{SafeSwitch}.
+
+Nel complesso, lo scenario realistico conferma quindi una proprieta` importante: la migrazione a 5G non altera il funzionamento qualitativo del sistema. Interferenze su 802.11p, handover cellulari e dinamica del gap restano accoppiati nello stesso ordine causale osservato nell'articolo, ma il dettaglio quantitativo dei transitori cambia e richiede una lettura prudente.

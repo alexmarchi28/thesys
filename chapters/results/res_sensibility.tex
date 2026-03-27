@@ -1,7 +1,23 @@
-\section{Analisi di sensibilità ai parametri}
+\section{Sensibilita` alle ipotesi di canale}
 
-Per quanto riguarda l'analisi di sensibilità ci si è concentrati sulla modifica di parametri dello scenario realistico, essendo quello che mostra più chiaramente differenze al variare di parametri.
+Il confronto con l'articolo mostra che la parte piu` difficile da riprodurre non e` la logica discreta di \emph{SafeSwitch}, ma la statistica fine delle perdite nello scenario realistico. Per questo motivo e` utile affiancare ai risultati principali una breve analisi di sensibilita` sulle ipotesi di canale. In particolare, sono stati confrontati quattro casi: \emph{shadowing} e \emph{fading} entrambi attivi, solo \emph{shadowing}, solo \emph{fading}, e assenza di entrambi. L'obiettivo non e` svolgere una campagna esaustiva di tuning radio, ma capire quali fenomeni siano robusti e quali dipendano in modo forte dal modello fisico sottostante.
 
-In particolare l'attenzione è stata posta sui parametri di potenza dell'interfaccia 5G, essendo al centro dell'attenzione della tesi.
+\begin{figure}[htbp]
+\centering
+\includegraphics[page=1,width=\textwidth]{fer_sensitivity.pdf}
+\caption{Analisi di sensibilita` della FER dei frame del predecessore nello scenario realistico al variare delle ipotesi di canale.}
+\label{fig:front_fer_sensitivity}
+\end{figure}
 
-Questo ha permesso di capire dove fossero eventuali colli di bottiglia, e punti critici del comportamento del platoon.
+\begin{figure}[htbp]
+\centering
+\includegraphics[page=2,width=\textwidth]{fer_sensitivity.pdf}
+\caption{Analisi di sensibilita` della FER dei frame del leader nello scenario realistico al variare delle ipotesi di canale.}
+\label{fig:leader_fer_sensitivity}
+\end{figure}
+
+I risultati sono riportati nelle Figure~\ref{fig:front_fer_sensitivity} e~\ref{fig:leader_fer_sensitivity}. In tutte le configurazioni, i burst di perdita su IEEE~802.11p restano chiaramente visibili. La presenza delle due sorgenti di interferenza resta quindi il fattore dominante per spiegare i peggioramenti locali del link radio a corto raggio. Cambiando il modello di canale varia l'ampiezza dei burst, ma non il fatto che essi compaiano nelle stesse finestre temporali.
+
+La componente cellulare risulta invece piu` stabile. In assenza di effetti stocastici, oppure con il solo \emph{shadowing}, gli handover producono spike molto brevi; attivando anche il \emph{fading} compaiono transitori leggermente piu` visibili, in particolare sulla FER dei frame del leader, ma senza trasformarsi in perdite persistenti. Questo conferma che, nello scenario considerato, la rete cellulare aggiornata agisce soprattutto come sorgente di discontinuita` brevi e non come collo di bottiglia principale.
+
+La tecnologia piu` sensibile resta la VLC. Quando il \emph{fading} e` attivo, soprattutto in combinazione con lo \emph{shadowing}, la FER puo` crescere sensibilmente nella seconda meta` della simulazione; con il solo \emph{shadowing}, o con entrambe le componenti disattivate, questo peggioramento quasi scompare. Il dato e` importante per interpretare il confronto con l'articolo: parte della divergenza osservata sulla VLC non deve essere attribuita automaticamente al solo passaggio LTE\(\rightarrow\)5G, ma puo` dipendere anche da differenze nelle ipotesi di propagazione e nei valori di default dei simulatori. Di conseguenza, i risultati di questo capitolo vanno letti soprattutto come una validazione qualitativa del comportamento del sistema, piu` che come una replica numerica esatta.

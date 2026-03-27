@@ -1,11 +1,29 @@
-\section{Analisi }
-Per dinamica naive si intende una dinamica di platoon in cui, quando la qualità della connessione scende sotto una certa soglia, i veicoli passano direttamente da una logica CACC ad una logica ACC, senza un passaggio gradule come si avrebbe nel caso di SafeSwitch.
+\section{Confronto tra fallback naive e SafeSwitch}
 
-Il problema di un approccio di questo tipo è che, il passaggio ad ACC avviene quando ancora i veicolo non sono abbastanza distanti. I veicoli sono fuori dalla loro zona di lavoro sicura, e una eventuale frenata di emergenza porta a uno scontro tra i veicoli. Questo è dato dal fatto che il controllore ACC ha dei margini di sicurezza differenti da quelli di un controllore CACC (PATH, Ploeg), questo perché i controllori CACC sono più performanti, ma hanno anche una richiesta di informazioni maggiore.
+Il primo insieme di risultati ha lo scopo di verificare che l'importazione della logica di \emph{SafeSwitch} conservi la proprieta` piu` importante del lavoro di riferimento: evitare che un degrado della connettivita` si traduca in un passaggio dinamicamente incoerente da CACC ad ACC. Nel seguito si considerano in particolare gli scenari 1 e 3 di \cite{segata2023multi-technology}, perche' sono quelli in cui il confronto con un fallback \emph{naive} risulta piu` netto. Nel fallback \emph{naive} una perdita di qualita` del link porta direttamente al passaggio da un controllore cooperativo a un ACC, senza attendere che il platoon abbia raggiunto una distanza compatibile con il nuovo controllore. \emph{SafeSwitch}, invece, introduce una fase intermedia di adattamento del gap, come discusso nel Capitolo~\ref{ch:safeswitch_5g}.
 
-\includegraphics[width=.5\textwidth]{confronto_naive_safeswitch_0.pdf}
-\includegraphics[width=.5\textwidth]{confronto_naive_safeswitch_1.pdf}
-\includegraphics[width=.5\textwidth]{confronto_naive_safeswitch_2.pdf}
-\includegraphics[width=.5\textwidth]{confronto_naive_safeswitch_3.pdf}
+\subsection{Scenario 1: failure distribuito senza frenata}
 
-Come si può notare dai risultati, il meccanismo di Safeswitch, oltre a dare sicurezza al platoon, permette di avere accellerazioni minori a parità di scenario, il ché porta a maggiore comfort percepito dal passeggero.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{scenario_1-grid.pdf}
+\caption{Confronto tra fallback \emph{naive} e \emph{SafeSwitch} nello scenario 1. In alto e` mostrato il fallback diretto, in basso \emph{SafeSwitch}; a sinistra la distanza inter-veicolare, a destra l'accelerazione.}
+\label{fig:scenario1_naive_vs_safeswitch}
+\end{figure}
+
+La Figura~\ref{fig:scenario1_naive_vs_safeswitch} mostra il caso in cui una tecnologia viene persa simultaneamente da tutti i follower del platoon. Entrambi i meccanismi portano, nel lungo periodo, a un aumento del gap verso valori compatibili con un comportamento piu` conservativo, ma il transitorio e` molto diverso. Nel fallback \emph{naive} l'aumento di distanza viene imposto quando i veicoli stanno ancora viaggiando con un assetto pensato per un controllore cooperativo; ne seguono accelerazioni e decelerazioni piu` brusche, con un'evidente amplificazione verso la coda del platoon.
+
+\emph{SafeSwitch} raggiunge invece lo stesso obiettivo in modo piu` graduale. Il gap viene aumentato progressivamente e le accelerazioni restano piu` contenute, il che migliora sia il comfort sia la regolarita` del transitorio. Il punto importante non e` soltanto estetico: un transitorio meno aggressivo lascia piu` margine a perturbazioni successive e riduce il rischio che errori locali si propaghino lungo la stringa. In questo senso, i risultati confermano l'intuizione di \cite{segata2023multi-technology}: la fase di \emph{gap control} non e` un dettaglio implementativo, ma un elemento necessario per rendere coerente il cambio di controllore con lo stato fisico del platoon.
+
+\subsection{Scenario 3: failure distribuito con frenata di emergenza}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{scenario_3-grid.pdf}
+\caption{Confronto tra fallback \emph{naive} e \emph{SafeSwitch} nello scenario 3, in cui al degrado distribuito segue una frenata di emergenza. In alto compare il fallback \emph{naive}, in basso \emph{SafeSwitch}; a sinistra la distanza inter-veicolare, a destra l'accelerazione.}
+\label{fig:scenario3_naive_vs_safeswitch}
+\end{figure}
+
+Lo scenario 3 rappresenta il caso piu` severo tra quelli considerati, perche' alla perdita distribuita di una tecnologia segue una frenata di emergenza del veicolo davanti al platoon. Qui emerge chiaramente il limite del fallback diretto: nel caso \emph{naive} la simulazione si interrompe quasi subito per collisione, segno che il passaggio ad ACC avviene mentre i veicoli si trovano ancora a distanze non compatibili con un controllore non cooperativo. Il problema non e` quindi soltanto una maggiore oscillazione, ma una vera perdita delle condizioni di sicurezza.
+
+Con \emph{SafeSwitch}, al contrario, il platoon evita l'urto e raggiunge progressivamente il nuovo assetto di marcia. Rimane comunque visibile un fenomeno di amplificazione verso la coda: i follower piu` arretrati sono costretti a frenate piu` intense, con picchi dell'ordine di \(8~\si{m/s^2}\), in linea con quanto osservato nel lavoro originale \cite{segata2023multi-technology}. Questo effetto mostra un limite reale del meccanismo, gia` discusso dagli autori: anche un fallback corretto puo` restare dinamicamente impegnativo nei casi estremi. La differenza, pero`, e` qualitativa prima ancora che quantitativa: con \emph{SafeSwitch} il transitorio resta controllato e il platoon conserva la sicurezza, mentre il fallback \emph{naive} porta a un crash.
