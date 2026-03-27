@@ -1,23 +1,63 @@
 \section{Sensibilita` alle ipotesi di canale}
 
-Il confronto con l'articolo mostra che la parte piu` difficile da riprodurre non e` la logica discreta di \emph{SafeSwitch}, ma la statistica fine delle perdite nello scenario realistico. Per questo motivo e` utile affiancare ai risultati principali una breve analisi di sensibilita` sulle ipotesi di canale. In particolare, sono stati confrontati quattro casi: \emph{shadowing} e \emph{fading} entrambi attivi, solo \emph{shadowing}, solo \emph{fading}, e assenza di entrambi. L'obiettivo non e` svolgere una campagna esaustiva di tuning radio, ma capire quali fenomeni siano robusti e quali dipendano in modo forte dal modello fisico sottostante.
+Per valutare quanto i risultati dello scenario realistico dipendano dal modello fisico sottostante, e` stata svolta una breve analisi di sensibilita` sulle due componenti principali del canale radio: \emph{shadowing} e \emph{fading}. Sono stati considerati quattro casi: entrambe le componenti attive, solo \emph{shadowing}, solo \emph{fading}, e assenza di entrambe. L'obiettivo non e` stimare un set ``migliore'' di parametri, ma capire quali fenomeni restino stabili al variare del modello di propagazione e quali, invece, cambino in modo sostanziale.
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
 \centering
-\includegraphics[page=1,width=\textwidth]{fer_sensitivity.pdf}
-\caption{Analisi di sensibilita` della FER dei frame del predecessore nello scenario realistico al variare delle ipotesi di canale.}
-\label{fig:front_fer_sensitivity}
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/fading_shadowing/interference-front-fer-4.pdf}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/shadowing/interference-front-fer-4.pdf}
+\end{minipage}
+
+\vspace{0.8em}
+
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/fading/interference-front-fer-4.pdf}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/none/interference-front-fer-4.pdf}
+\end{minipage}
+\caption{FER dei frame provenienti dal predecessore al variare delle ipotesi di canale. In alto a sinistra sono attivi sia \emph{shadowing} sia \emph{fading}; in alto a destra e` attivo solo lo \emph{shadowing}; in basso a sinistra e` attivo solo il \emph{fading}; in basso a destra entrambe le componenti sono disattivate.}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
 \centering
-\includegraphics[page=2,width=\textwidth]{fer_sensitivity.pdf}
-\caption{Analisi di sensibilita` della FER dei frame del leader nello scenario realistico al variare delle ipotesi di canale.}
-\label{fig:leader_fer_sensitivity}
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/fading_shadowing/interference-leader-fer-4.pdf}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/shadowing/interference-leader-fer-4.pdf}
+\end{minipage}
+
+\vspace{0.8em}
+
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/fading/interference-leader-fer-4.pdf}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=\linewidth]{../tesi/final_plots/sensibility_test/none/interference-leader-fer-4.pdf}
+\end{minipage}
+\caption{FER dei frame provenienti dal leader al variare delle ipotesi di canale. Anche qui i quattro quadranti rappresentano, nell'ordine, il caso con \emph{shadowing} e \emph{fading} attivi, il caso con solo \emph{shadowing}, il caso con solo \emph{fading} e il caso senza entrambe le componenti stocastiche.}
 \end{figure}
 
-I risultati sono riportati nelle Figure~\ref{fig:front_fer_sensitivity} e~\ref{fig:leader_fer_sensitivity}. In tutte le configurazioni, i burst di perdita su IEEE~802.11p restano chiaramente visibili. La presenza delle due sorgenti di interferenza resta quindi il fattore dominante per spiegare i peggioramenti locali del link radio a corto raggio. Cambiando il modello di canale varia l'ampiezza dei burst, ma non il fatto che essi compaiano nelle stesse finestre temporali.
+Il primo elemento che resta stabile in tutti i test e` il comportamento di IEEE~802.11p. I burst di perdita compaiono sempre nelle stesse finestre temporali, in corrispondenza delle zone di interferenza gia` discusse nello scenario realistico. Questo conferma che, per il canale 802.11p, la geometria dello scenario e il traffico interferente restano la causa principale dei peggioramenti osservati; il modello di propagazione ne modifica soprattutto l'intensita` e la dispersione tra i diversi veicoli.
 
-La componente cellulare risulta invece piu` stabile. In assenza di effetti stocastici, oppure con il solo \emph{shadowing}, gli handover producono spike molto brevi; attivando anche il \emph{fading} compaiono transitori leggermente piu` visibili, in particolare sulla FER dei frame del leader, ma senza trasformarsi in perdite persistenti. Questo conferma che, nello scenario considerato, la rete cellulare aggiornata agisce soprattutto come sorgente di discontinuita` brevi e non come collo di bottiglia principale.
+Molto piu` marcata e` invece la sensibilita` della componente cellulare. Nel FER dei frame del predecessore, il caso senza \emph{shadowing} e \emph{fading} mostra quasi solo spike isolati, mentre appena si introduce una componente stocastica il comportamento cambia drasticamente. Con il solo \emph{shadowing} compaiono lunghi intervalli di FER elevata sul canale C-V2X, e con \emph{shadowing}+\emph{fading} la degradazione diventa ancora piu` irregolare e persistente. Anche il caso con solo \emph{fading} risulta sensibilmente peggiore del baseline, ma con una crescita piu` graduale nella seconda parte della simulazione. Nei nuovi grafici, quindi, la rete cellulare non appare piu` come una sorgente di soli transitori brevi: a seconda del modello di canale puo` diventare uno dei principali fattori di perdita.
 
-La tecnologia piu` sensibile resta la VLC. Quando il \emph{fading} e` attivo, soprattutto in combinazione con lo \emph{shadowing}, la FER puo` crescere sensibilmente nella seconda meta` della simulazione; con il solo \emph{shadowing}, o con entrambe le componenti disattivate, questo peggioramento quasi scompare. Il dato e` importante per interpretare il confronto con l'articolo: parte della divergenza osservata sulla VLC non deve essere attribuita automaticamente al solo passaggio LTE\(\rightarrow\)5G, ma puo` dipendere anche da differenze nelle ipotesi di propagazione e nei valori di default dei simulatori. Di conseguenza, i risultati di questo capitolo vanno letti soprattutto come una validazione qualitativa del comportamento del sistema, piu` che come una replica numerica esatta.
+La VLC risulta a sua volta molto sensibile, ma con un comportamento diverso tra FER del predecessore e FER del leader. Nel mosaico dedicato ai frame del predecessore la degradazione della VLC cresce soprattutto nei casi con \emph{fading}, fino a raggiungere lunghi tratti con FER prossima a \(1\), mentre nel caso deterministico resta quasi trascurabile. Nel mosaico dei frame del leader l'effetto e` ancora piu` netto: in tutti e tre i casi stocastici la VLC tende a saturare, con transizioni molto anticipate quando e` presente lo \emph{shadowing}. Questo e` coerente con il fatto che l'informazione del leader percorre una catena di comunicazione piu` lunga e accumula quindi piu` occasioni di perdita rispetto a quella del predecessore.
+
+Questi risultati portano a una conclusione diversa rispetto alla versione precedente della sezione. Le differenze quantitative tra run, e anche tra la presente tesi e l'articolo di riferimento, non dipendono soltanto dalla migrazione LTE\(\rightarrow\)5G, ma anche in modo sostanziale dalle ipotesi di canale adottate. In particolare, i nuovi test mostrano che la componente cellulare e la VLC possono passare da un ruolo secondario a un ruolo dominante nella FER semplicemente cambiando \emph{shadowing} e \emph{fading}. Di conseguenza, i risultati dello scenario realistico vanno interpretati soprattutto come evidenza di coerenza funzionale del sistema, mentre ogni confronto numerico stretto richiederebbe una calibrazione molto piu` rigorosa del modello radio.
