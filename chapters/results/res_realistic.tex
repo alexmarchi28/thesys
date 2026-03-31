@@ -8,14 +8,19 @@ Per rendere il confronto leggibile, nelle figure il pannello sinistro riporta l'
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{confronto_acceleration.pdf}
-\vspace{0.5em}
-\includegraphics[width=\textwidth]{confronto_distance.pdf}
-\caption{Confronto tra articolo di riferimento e reimplementazione della tesi nello scenario realistico. In alto sono riportate le accelerazioni, in basso le distanze inter-veicolari.}
-\label{fig:realistic_dynamics_compare}
+\includegraphics[width=\textwidth]{acceleration-side-by-side.pdf}
+\caption{Confronto dell'accelerazione nello scenario realistico: a sinistra e` riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
+\label{fig:realistic_acceleration_compare}
 \end{figure}
 
-La Figura~\ref{fig:realistic_dynamics_compare} mostra che il comportamento globale del platoon resta coerente tra i due lavori. In entrambi i casi i burst di perdita associati alle zone di interferenza producono un aumento temporaneo del gap, seguito da una fase di ricompattamento quando la qualita` della comunicazione torna sufficiente. Anche i transitori legati alla componente cellulare restano relativamente brevi e non innescano instabilita` permanenti.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{distance-side-by-side.pdf}
+\caption{Confronto della distanza inter-veicolare nello scenario realistico: a sinistra e` riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
+\label{fig:realistic_distance_compare}
+\end{figure}
+
+Le Figure~\ref{fig:realistic_acceleration_compare} e~\ref{fig:realistic_distance_compare} mostrano che il comportamento globale del platoon resta coerente tra i due lavori. In entrambi i casi i burst di perdita associati alle zone di interferenza producono un aumento temporaneo del gap, seguito da una fase di ricompattamento quando la qualita` della comunicazione torna sufficiente. Anche i transitori legati alla componente cellulare restano relativamente brevi e non innescano instabilita` permanenti.
 
 Le differenze quantitative, pero`, sono evidenti. Nell'articolo alcuni veicoli in coda raggiungono distanze molto elevate nella seconda meta` della simulazione, mentre nella reimplementazione corrente i picchi risultano piu` contenuti e il ritorno verso il gap nominale avviene prima. Anche le accelerazioni osservate nel pannello destro sono, nel complesso, meno pronunciate. L'interpretazione piu` plausibile e` che il passaggio da SimuLTE a Simu5G, insieme ai diversi valori di default dei modelli fisici e di handover, abbia modificato la durata e la correlazione temporale delle perdite, pur lasciando invariata la logica superiore di \emph{SafeSwitch}. In altre parole, il meccanismo reagisce ancora agli stessi tipi di eventi, ma la severita` del transitorio non coincide piu` punto per punto.
 
@@ -23,14 +28,19 @@ Le differenze quantitative, pero`, sono evidenti. Nell'articolo alcuni veicoli i
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{confronto_front_fer.pdf}
-\vspace{0.5em}
-\includegraphics[width=\textwidth]{confronto_leader_fer.pdf}
-\caption{Confronto della FER nello scenario realistico. In alto e` riportata la FER dei frame provenienti dal predecessore, in basso quella dei frame del leader.}
-\label{fig:realistic_fer_compare}
+\includegraphics[width=\textwidth]{front-fer-side-by-side.pdf}
+\caption{Confronto della FER dei frame provenienti dal predecessore nello scenario realistico: a sinistra e` riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
+\label{fig:realistic_front_fer_compare}
 \end{figure}
 
-Le curve di FER in Figura~\ref{fig:realistic_fer_compare} aiutano a leggere le differenze appena discusse. La tecnologia IEEE~802.11p continua a mostrare burst di perdite localizzati nelle stesse finestre temporali, coerenti con il passaggio nelle zone di interferenza. La componente cellulare, invece, presenta soprattutto spike brevi e concentrati in corrispondenza degli handover, senza produrre perdite prolungate. Questo comportamento e` compatibile con l'idea che gli handover restino una sorgente di transitori, ma non rappresentino il principale fattore di degrado della dinamica.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{leader-fer-side-by-side.pdf}
+\caption{Confronto della FER dei frame provenienti dal leader nello scenario realistico: a sinistra e` riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
+\label{fig:realistic_leader_fer_compare}
+\end{figure}
+
+Le curve di FER nelle Figure~\ref{fig:realistic_front_fer_compare} e~\ref{fig:realistic_leader_fer_compare} aiutano a leggere le differenze appena discusse. La tecnologia IEEE~802.11p continua a mostrare burst di perdite localizzati nelle stesse finestre temporali, coerenti con il passaggio nelle zone di interferenza. La componente cellulare, invece, presenta soprattutto spike brevi e concentrati in corrispondenza degli handover, senza produrre perdite prolungate. Questo comportamento e` compatibile con l'idea che gli handover restino una sorgente di transitori, ma non rappresentino il principale fattore di degrado della dinamica.
 
 Il confronto con l'articolo mette in evidenza soprattutto una differenza sulla VLC. Nel lavoro originale la FER della VLC cresce fortemente nella seconda meta` della simulazione, fino a saturare per alcuni veicoli; nella reimplementazione della tesi questo effetto e` molto piu` attenuato. Poiche' la VLC e` particolarmente sensibile alla distanza e alla linea di vista, questa divergenza suggerisce che il feedback tra aumento del gap e perdita della connettivita` ottica, pur ancora presente come meccanismo teorico, si manifesti in modo meno drastico nel nuovo stack simulativo. Anche questo punto e` coerente con l'ipotesi di una diversa severita` dei burst radio e non con un malfunzionamento della logica di \emph{SafeSwitch}.
 
