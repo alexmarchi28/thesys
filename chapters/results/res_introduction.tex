@@ -1,9 +1,9 @@
-\chapter{Risultati e discussione}
+\chapter{Analisi dei Risultati}
 \label{ch:results}
 
 Questo capitolo valuta il comportamento della reimplementazione descritta nel Capitolo~\ref{ch:safeswitch_5g}, con due obiettivi complementari. Da un lato si vuole verificare che la logica di \emph{SafeSwitch} riproduca il comportamento qualitativo atteso negli scenari artificiali piu` significativi; dall'altro si vuole capire in che misura il passaggio da SimuLTE a Simu5G modifichi i risultati nello scenario piu` realistico, dove interferenze, handover e modelli di canale interagiscono con la dinamica del platoon.
 
-L'analisi e` organizzata in tre passaggi. Si considera anzitutto il confronto con un fallback \emph{naive}, cosi` da mettere in evidenza il ruolo della fase di \emph{gap control}. Si passa poi allo scenario realistico con interferenze su IEEE~802.11p e handover cellulari, confrontando i risultati ottenuti con quelli dell'articolo di riferimento \cite{segata2023multi-technology}. Infine si discutono la sensibilita` dei risultati alle ipotesi di canale e i limiti dell'interpretazione quantitativa.
+L'analisi e` organizzata in tre passaggi. Si considera anzitutto il confronto con un fallback \emph{naive}, cosi` da mettere in evidenza il ruolo della fase di \emph{gap control}. Si passa poi allo scenario realistico con interferenze su IEEE~802.11p e handover cellulari, confrontando i risultati ottenuti con quelli dell'articolo di riferimento \cite{segata2023multi-technology}. Infine si discutono la sensibilita` dei risultati ai fenonemi di fading e shadowing e i limiti dell'interpretazione quantitativa.
 
 Nei grafici, i simboli \(\times\) e \(+\) indicano rispettivamente eventi di \emph{failure} e \emph{recovery}, mentre le bande grigie evidenziano gli intervalli di handover cellulare. Quando si analizza la qualita` del collegamento si utilizza la \emph{Frame Error Rate} (FER), definita come
 \[

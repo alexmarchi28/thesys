@@ -1,8 +1,8 @@
 \section{SafeSwitch come macchina a stati}
 
-Nel paper, \emph{SafeSwitch} e` modellato come una macchina a stati finiti distribuita, eseguita localmente dai follower \cite{segata2023multi-technology}. Gli stati stabili sono indicati con \(F_i\), dove \(i\) rappresenta il numero di interfacce ritenute disponibili. A ciascuno di questi stati e` associata una precisa configurazione di marcia, cioe` una coppia formata da controllore e gap desiderato. In altri termini, ogni livello di connettivita` corrisponde a un diverso compromesso tra prestazioni e margini di sicurezza.
+\emph{SafeSwitch} e` modellato come una macchina a stati finiti distribuita, eseguita localmente dai follower \cite{segata2023multi-technology}. Gli stati stabili sono indicati con \(F_i\), dove \(i\) rappresenta il numero di interfacce ritenute disponibili. A ciascuno di questi stati e` associata una precisa configurazione di marcia, cioe` una coppia formata da controllore e gap desiderato.
 
-Accanto agli stati stabili compaiono gli stati \(G_i\), che rappresentano le fasi di transizione. La presenza di questi stati e` uno degli aspetti piu` caratteristici di \emph{SafeSwitch}: il sistema riconosce infatti che un cambio di qualita` di comunicazione non deve produrre un cambio istantaneo e brutale del comportamento del veicolo. Prima di consolidare il nuovo stato operativo, occorre accompagnare il platoon verso condizioni di distanza compatibili con il controllore che sta per essere usato.
+Accanto agli stati stabili compaiono gli stati \(G_i\), che rappresentano le fasi di transizione. La presenza di questi stati e` uno degli aspetti peculiari di \emph{SafeSwitch}: il sistema riconosce infatti che un cambio di qualita` di comunicazione non deve produrre un cambio istantaneo e brutale del comportamento del veicolo. Prima di consolidare il nuovo stato operativo, occorre accompagnare il platoon verso condizioni di distanza compatibili con il controllore che sta per essere usato.
 
 \begin{figure}[htbp]
 \centering
@@ -11,9 +11,9 @@ Accanto agli stati stabili compaiono gli stati \(G_i\), che rappresentano le fas
 \label{fig:fallback-fsm}
 \end{figure}
 
-Quando tutte le interfacce sono disponibili, il platoon puo` sfruttare il controllore piu` prestazionale e un gap piu` contenuto. Nella configurazione sperimentale dell'articolo questo corrisponde tipicamente all'uso del controllore PATH nello stato con tre interfacce operative, a un controllore di tipo Ploeg negli stati intermedi e infine ad ACC come fallback finale quando la cooperazione non puo` piu` essere sostenuta \cite{ploeg2011design,ploeg2015graceful,segata2023multi-technology}. La sequenza precisa dipende dal numero di interfacce considerate affidabili in un dato istante.
+Quando tutte le interfacce sono disponibili, il platoon puo` sfruttare il controllore piu` prestazionale e un gap piu` contenuto. Nella configurazione sperimentale dell'articolo questo corrisponde all'uso del controllore PATH nello stato con tre interfacce operative, a un controllore di tipo Ploeg negli stati intermedi e infine ad ACC come fallback quando la cooperazione non puo` piu` essere sostenuta \cite{ploeg2011design,ploeg2015graceful,segata2023multi-technology}.
 
-La logica e` bidirezionale. In caso di \emph{failure} il follower scende verso stati piu` conservativi, associati a minore connettivita` e a maggiori margini di sicurezza. In caso di \emph{recovery}, invece, puo` risalire verso stati piu` performanti, purche' il miglioramento della qualita` di comunicazione risulti sufficientemente stabile. Non si tratta quindi di un semplice meccanismo di emergenza, ma di una politica di adattamento continua che cerca di sfruttare al meglio la connettivita` disponibile senza compromettere la sicurezza.
+La logica e` bidirezionale. In caso di \emph{failure} il follower scende verso stati piu` conservativi, associati a minore connettivita` e a maggiori margini di sicurezza. In caso di \emph{recovery}, invece, puo` risalire verso stati piu` performanti, purche' il miglioramento della qualita` di comunicazione risulti sufficientemente stabile.
 
 \begin{figure}[htbp]
 \centering

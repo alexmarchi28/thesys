@@ -1,8 +1,8 @@
 \section{Scenario realistico: confronto con l'articolo e ruolo del 5G}
 
-Lo scenario realistico e` quello piu` interessante per valutare la trasferibilita` dell'architettura a una toolchain aggiornata. Riprende infatti l'impostazione dell'articolo di riferimento: un circuito chiuso con due zone di interferenza su IEEE~802.11p e una componente cellulare soggetta a handover \cite{segata2023multi-technology}. Nella reimplementazione proposta in questa tesi la parte cellulare non e` piu` modellata tramite SimuLTE/LTE, ma tramite Simu5G e una componente 5G integrata in \texttt{plexe\_hetnet}. L'obiettivo del confronto non e` quindi ottenere una coincidenza numerica perfetta, difficilmente realizzabile dopo una migrazione di stack, ma verificare se restino riconoscibili le stesse relazioni causali tra comunicazione, logica di fallback e dinamica del platoon.
+Lo scenario realistico e` quello piu` interessante per valutare la trasferibilita` dell'architettura a una toolchain aggiornata. Riprende infatti l'impostazione dell'articolo di riferimento: un circuito chiuso con due zone di interferenza su IEEE~802.11p e una componente cellulare soggetta a handover \cite{segata2023multi-technology}. L'obiettivo del confronto non e` ottenere una coincidenza numerica perfetta, difficilmente realizzabile dopo una migrazione di stack, ma verificare se restino riconoscibili le stesse relazioni causali tra comunicazione, logica di fallback e dinamica del platoon.
 
-Per rendere il confronto leggibile, nelle figure il pannello sinistro riporta l'andamento mostrato dall'articolo, mentre il pannello destro riporta i risultati ottenuti in questa tesi. Nei grafici della FER la banda centrale mantiene l'etichetta ``C-V2X'' per continuita` con gli script originali, ma nel pannello di destra corrisponde alla componente 5G modellata con Simu5G.
+Per rendere il confronto leggibile, nelle figure il pannello sinistro riporta l'andamento mostrato dall'articolo, mentre il pannello destro riporta i risultati ottenuti in questa tesi.
 
 \subsection{Dinamica del platoon}
 
