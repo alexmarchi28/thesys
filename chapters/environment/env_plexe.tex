@@ -14,6 +14,13 @@ Dal punto di vista funzionale, PLEXE mette a disposizione:
 \end{itemize}
 Questa combinazione rende PLEXE adatto non solo a test di protocolli, ma anche ad analisi in cui conta la risposta dinamica del sistema (stabilità, spacing, transitori, effetti di perturbazioni).
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{plexe-structure.pdf}
+\caption{Struttura dell'ambiente di sviluppo}
+\label{fig:plexe-structure}
+\end{figure}
+
 Nel lavoro sperimentale di riferimento da cui parte questa tesi, PLEXE viene usato come piattaforma per studiare l’interazione tra più tecnologie di comunicazione e meccanismi di fallback del controllo \cite{segata2023multi-technology}. Il presente elaborato riprende tale impostazione, ma con una finalità aggiuntiva: verificare la riproducibilità dell’approccio su una toolchain aggiornata e con una diversa componente cellulare (Simu5G). Di conseguenza, in questo capitolo PLEXE viene inquadrato come ambiente di sviluppo, mentre nei capitoli successivi saranno descritte in dettaglio le modifiche introdotte e la logica importata.
 
 È utile sottolineare che PLEXE non sostituisce OMNeT++, Veins o SUMO, ma si appoggia a essi. La sua forza è proprio l’essere un’estensione specializzata per il dominio del platooning, capace di riusare i livelli infrastrutturali sottostanti e di concentrarsi sulle primitive e sui modelli che servono per la guida cooperativa.
