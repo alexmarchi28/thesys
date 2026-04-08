@@ -1,0 +1,10 @@
+\chapter{Conclusioni e sviluppi futuri}
+\label{ch:conclusions}
+
+Questa tesi ha ricostruito e aggiornato un'architettura V2X multi-tecnologia per il platooning, verificandone la trasferibilità a una toolchain più recente. Il risultato principale è che la logica di \emph{SafeSwitch} resta operativa anche nel nuovo ambiente: monitoraggio del PDR, \emph{fallback} e \emph{recovery} mantengono il comportamento qualitativo atteso.
+
+Il contributo tecnico più rilevante è il passaggio da SimuLTE a Simu5G per la componente cellulare. La migrazione ha richiesto l'adattamento dei moduli di PLEXE senza cambiare il ruolo del terzo canale accanto a IEEE~802.11p e VLC. I risultati confermano inoltre che \emph{SafeSwitch} continua a distinguersi da un fallback \emph{naive} negli scenari critici e che, nello scenario realistico, il 5G non introduce regressioni funzionali; anzi, gli handover sembrano produrre transitori meno severi del precedente stack LTE. Nel complesso, la tesi va letta come un aggiornamento architetturale e una validazione sperimentale della trasferibilità del sistema.
+
+\input{chapters/conclusions/conc_implications}
+\input{chapters/conclusions/conc_limits}
+\input{chapters/conclusions/conc_future}

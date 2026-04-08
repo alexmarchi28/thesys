@@ -1,6 +1,6 @@
 \section{Monitoraggio del link: PDR e ring buffer}
 
-Per poter decidere quando degradare o recuperare lo stato del platoon, \emph{SafeSwitch} ha bisogno di una misura della qualità del link che sia confrontabile tra tecnologie molto diverse tra loro. Nel paper questa misura è il \emph{Packet Delivery Ratio} (PDR), cioè la frazione di pacchetti correttamente ricevuti in una finestra temporale recente \cite{segata2023multi-technology}. L'attenzione è posta sul capire se il flusso informativo disponibile al controllore sia ancora sufficientemente affidabile.
+Per poter decidere quando aumentare o diminuire le distanze intraveicolari, \emph{SafeSwitch} ha bisogno di una misura della qualità del link che sia confrontabile tra tecnologie molto diverse tra loro. Nel paper questa misura è il \emph{Packet Delivery Ratio} (PDR), cioè la frazione di pacchetti correttamente ricevuti in una finestra temporale recente \cite{segata2023multi-technology}. L'attenzione è posta sul capire se il flusso informativo disponibile al controllore sia ancora sufficientemente affidabile.
 
 La stima del PDR sfrutta il fatto che ogni beacon venga trasmesso in parallelo sulle interfacce attive. Quando un veicolo riceve più copie dello stesso messaggio su tecnologie differenti, può confrontarne i numeri di sequenza e ricostruire quali pacchetti siano arrivati e quali invece siano andati persi su ciascun link. In questo modo perdite, interruzioni temporanee o degradi di qualità vengono osservati non come eventi isolati, ma come andamento nel tempo della consegna dei messaggi.
 
