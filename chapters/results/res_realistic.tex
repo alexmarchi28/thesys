@@ -1,6 +1,6 @@
 \section{Scenario realistico: confronto con l'articolo e ruolo del 5G}
 
-Lo scenario realistico e` quello piu` interessante per valutare la trasferibilita` dell'architettura a una toolchain aggiornata. Riprende infatti l'impostazione dell'articolo di riferimento: un circuito chiuso con due zone di interferenza su IEEE~802.11p e una componente cellulare soggetta a handover \cite{segata2023multi-technology}. L'obiettivo del confronto non e` ottenere una coincidenza numerica perfetta, difficilmente realizzabile dopo una migrazione di stack, ma verificare se restino riconoscibili le stesse relazioni causali tra comunicazione, logica di fallback e dinamica del platoon.
+Lo scenario realistico è quello più interessante per valutare la trasferibilità dell'architettura a una toolchain aggiornata. Riprende infatti l'impostazione dell'articolo di riferimento: un circuito chiuso con due zone di interferenza su IEEE~802.11p e una componente cellulare soggetta a handover \cite{segata2023multi-technology}. L'obiettivo del confronto non è ottenere una coincidenza numerica perfetta, difficilmente realizzabile dopo una migrazione di stack, ma verificare se restino riconoscibili le stesse relazioni causali tra comunicazione, logica di fallback e dinamica del platoon.
 
 Per rendere il confronto leggibile, nelle figure il pannello sinistro riporta l'andamento mostrato dall'articolo, mentre il pannello destro riporta i risultati ottenuti in questa tesi.
 
@@ -9,39 +9,39 @@ Per rendere il confronto leggibile, nelle figure il pannello sinistro riporta l'
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{acceleration-side-by-side.pdf}
-\caption{Confronto dell'accelerazione nello scenario realistico: a sinistra e` riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
+\caption{Confronto dell'accelerazione nello scenario realistico: a sinistra è riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
 \label{fig:realistic_acceleration_compare}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{distance-side-by-side.pdf}
-\caption{Confronto della distanza inter-veicolare nello scenario realistico: a sinistra e` riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
+\caption{Confronto della distanza inter-veicolare nello scenario realistico: a sinistra è riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
 \label{fig:realistic_distance_compare}
 \end{figure}
 
-Le Figure~\ref{fig:realistic_acceleration_compare} e~\ref{fig:realistic_distance_compare} mostrano che il comportamento globale del platoon resta coerente tra i due lavori. In entrambi i casi i burst di perdita associati alle zone di interferenza producono un aumento temporaneo del gap, seguito da una fase di ricompattamento quando la qualita` della comunicazione torna sufficiente. Anche i transitori legati alla componente cellulare restano relativamente brevi e non innescano instabilita` permanenti.
+Le Figure~\ref{fig:realistic_acceleration_compare} e~\ref{fig:realistic_distance_compare} mostrano che il comportamento globale del platoon resta coerente tra i due lavori. In entrambi i casi i burst di perdita associati alle zone di interferenza producono un aumento temporaneo del gap, seguito da una fase di ricompattamento quando la qualità della comunicazione torna sufficiente. Anche i transitori legati alla componente cellulare restano relativamente brevi e non innescano instabilità permanenti.
 
-Le differenze quantitative, pero`, sono evidenti. Nell'articolo alcuni veicoli in coda raggiungono distanze molto elevate nella seconda meta` della simulazione, mentre nella reimplementazione corrente i picchi risultano piu` contenuti e il ritorno verso il gap nominale avviene prima. Anche le accelerazioni osservate nel pannello destro sono, nel complesso, meno pronunciate. L'interpretazione piu` plausibile e` che il passaggio da SimuLTE a Simu5G, insieme ai diversi valori di default dei modelli fisici e di handover, abbia modificato la durata e la correlazione temporale delle perdite, pur lasciando invariata la logica superiore di \emph{SafeSwitch}. In altre parole, il meccanismo reagisce ancora agli stessi tipi di eventi, ma la severita` del transitorio non coincide piu` punto per punto.
+Le differenze quantitative, però, sono evidenti. Nell'articolo alcuni veicoli in coda raggiungono distanze molto elevate nella seconda metà della simulazione, mentre nella reimplementazione corrente i picchi risultano più contenuti e il ritorno verso il gap nominale avviene prima. Anche le accelerazioni osservate nel pannello destro sono, nel complesso, meno pronunciate. L'interpretazione più plausibile è che il passaggio da SimuLTE a Simu5G, insieme ai diversi valori di default dei modelli fisici e di handover, abbia modificato la durata e la correlazione temporale delle perdite, pur lasciando invariata la logica superiore di \emph{SafeSwitch}. In altre parole, il meccanismo reagisce ancora agli stessi tipi di eventi, ma la severità del transitorio non coincide più punto per punto.
 
-\subsection{FER e qualita` del collegamento}
+\subsection{FER e qualità del collegamento}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{front-fer-side-by-side.pdf}
-\caption{Confronto della FER dei frame provenienti dal predecessore nello scenario realistico: a sinistra e` riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
+\caption{Confronto della FER dei frame provenienti dal predecessore nello scenario realistico: a sinistra è riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
 \label{fig:realistic_front_fer_compare}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{leader-fer-side-by-side.pdf}
-\caption{Confronto della FER dei frame provenienti dal leader nello scenario realistico: a sinistra e` riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
+\caption{Confronto della FER dei frame provenienti dal leader nello scenario realistico: a sinistra è riportato il grafico dell'articolo di riferimento, a destra il grafico ottenuto dalle simulazioni della tesi.}
 \label{fig:realistic_leader_fer_compare}
 \end{figure}
 
-Le curve di FER nelle Figure~\ref{fig:realistic_front_fer_compare} e~\ref{fig:realistic_leader_fer_compare} aiutano a leggere le differenze appena discusse. La tecnologia IEEE~802.11p continua a mostrare burst di perdite localizzati nelle stesse finestre temporali, coerenti con il passaggio nelle zone di interferenza. La componente cellulare, invece, presenta soprattutto spike brevi e concentrati in corrispondenza degli handover, senza produrre perdite prolungate. Questo comportamento e` compatibile con l'idea che gli handover restino una sorgente di transitori, ma non rappresentino il principale fattore di degrado della dinamica.
+Le curve di FER nelle Figure~\ref{fig:realistic_front_fer_compare} e~\ref{fig:realistic_leader_fer_compare} aiutano a leggere le differenze appena discusse. La tecnologia IEEE~802.11p continua a mostrare burst di perdite localizzati nelle stesse finestre temporali, coerenti con il passaggio nelle zone di interferenza. La componente cellulare, invece, presenta soprattutto spike brevi e concentrati in corrispondenza degli handover, senza produrre perdite prolungate. Questo comportamento è compatibile con l'idea che gli handover restino una sorgente di transitori, ma non rappresentino il principale fattore di degrado della dinamica.
 
-Il confronto con l'articolo mette in evidenza soprattutto una differenza sulla VLC. Nel lavoro originale la FER della VLC cresce fortemente nella seconda meta` della simulazione, fino a saturare per alcuni veicoli; nella reimplementazione della tesi questo effetto e` molto piu` attenuato. Poiche' la VLC e` particolarmente sensibile alla distanza e alla linea di vista, questa divergenza suggerisce che il feedback tra aumento del gap e perdita della connettivita` ottica, pur ancora presente come meccanismo teorico, si manifesti in modo meno drastico nel nuovo stack simulativo. Anche questo punto e` coerente con l'ipotesi di una diversa severita` dei burst radio e non con un malfunzionamento della logica di \emph{SafeSwitch}.
+Il confronto con l'articolo mette in evidenza soprattutto una differenza sulla VLC. Nel lavoro originale la FER della VLC cresce fortemente nella seconda metà della simulazione, fino a saturare per alcuni veicoli; nella reimplementazione della tesi questo effetto è molto più attenuato. Poiché la VLC è particolarmente sensibile alla distanza e alla linea di vista, questa divergenza suggerisce che il feedback tra aumento del gap e perdita della connettività ottica, pur ancora presente come meccanismo teorico, si manifesti in modo meno drastico nel nuovo stack simulativo. Anche questo punto è coerente con l'ipotesi di una diversa severità dei burst radio e non con un malfunzionamento della logica di \emph{SafeSwitch}.
 
-Nel complesso, lo scenario realistico conferma quindi una proprieta` importante: la migrazione a 5G non altera il funzionamento qualitativo del sistema. Interferenze su 802.11p, handover cellulari e dinamica del gap restano accoppiati nello stesso ordine causale osservato nell'articolo, ma il dettaglio quantitativo dei transitori cambia e richiede una lettura prudente.
+Nel complesso, lo scenario realistico conferma quindi una proprietà importante: la migrazione a 5G non altera il funzionamento qualitativo del sistema. Interferenze su 802.11p, handover cellulari e dinamica del gap restano accoppiati nello stesso ordine causale osservato nell'articolo, ma il dettaglio quantitativo dei transitori cambia e richiede una lettura prudente.
