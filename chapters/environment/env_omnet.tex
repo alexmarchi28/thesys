@@ -9,15 +9,5 @@ Dal punto di vista architetturale, OMNeT++ separa:
 \item la logica di comportamento dei moduli, implementata in C++;
 \item la configurazione delle simulazioni e dei parametri sperimentali, gestita tramite file \texttt{omnetpp.ini}.
 \end{itemize}
-Questa separazione è particolarmente vantaggiosa per una tesi sperimentale, perché facilita la riproduzione di scenari varianti (parametri radio, policy di controllo, durata della simulazione, seed, logging) senza modificare continuamente il codice.
 
-Nel workflow adottato, OMNeT++ svolge il ruolo di orchestratore dell’intera simulazione. Le principali attività gestite a questo livello sono:
-\begin{itemize}
-\item inizializzazione dei moduli e lettura della configurazione;
-\item schedulazione degli eventi di rete e delle applicazioni;
-\item raccolta di statistiche e segnali;
-\item coordinamento con i moduli di mobilità e con le librerie esterne (Veins, PLEXE, Simu5G).
-\end{itemize}
-In altre parole, OMNeT++ non viene utilizzato come semplice “esecutore” di un singolo protocollo, ma come piattaforma su cui comporre un ambiente sperimentale multi-dominio.
-
-Un ulteriore punto di forza, rilevante per il presente lavoro, è la possibilità di integrare framework sviluppati dalla comunità (ad es.\ Veins, PLEXE, Simu5G) mantenendo una struttura relativamente modulare. Questo aspetto è cruciale quando si devono aggiornare versioni dei componenti o sostituire un sottosistema (come la componente cellulare) senza riscrivere l’intera infrastruttura sperimentale. La letteratura più recente sul cooperative driving continua infatti a fare leva su questa modularità per costruire toolchain realistiche e riusabili \cite{segata2023multi-technology,nardini2020simu5g}.
+Questa consente di definire varianti di scenario e di configurazione senza intervenire sul codice sorgente. Nel workflow adottato, OMNeT++ svolge quindi il ruolo di coordinatore dell’intera simulazione: inizializza i moduli, schedula gli eventi, raccoglie le statistiche e gestisce le interazioni con framework esterni come Veins, PLEXE e Simu5G \cite{segata2023multi-technology, nardini2020simu5g}.
