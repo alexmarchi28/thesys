@@ -8,3 +8,6 @@
 *.pdf
 *.run.xml
 *.toc
+*.out
+*.snm
+*.nav
