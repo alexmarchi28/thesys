@@ -5,8 +5,8 @@ This chapter evaluates the behavior of the reimplementation described in Chapter
 
 The analysis is organized into two steps. It first considers the comparison with a \emph{naive} fallback, in order to highlight the role of the \emph{gap control} phase. It then moves to the realistic scenario with interference on IEEE~802.11p and cellular handovers, comparing the obtained results with those reported in the reference paper \cite{segata2023multi-technology}. The chapter closes with a critical discussion of the limits of quantitative interpretation.
 
-In the plots, the symbols \(\times\) and \(+\) indicate \emph{failure} and \emph{recovery} events respectively, while the gray bands highlight the cellular handover intervals. When link quality is analyzed, the \emph{Frame Error Rate} (FER) is used, defined as
+In the plots, the symbols \(\times\) and \(+\) indicate \emph{failure} and \emph{recovery} events, respectively, while the gray bands highlight the cellular handover intervals. When link quality is analyzed, the \emph{Frame Error Rate} (FER) is used, defined as
 \[
-\mathrm{FER} = \frac{N_{\mathrm{attesi}} - N_{\mathrm{ricevuti}}}{N_{\mathrm{attesi}}},
+\mathrm{FER} = \frac{N_{\mathrm{expected}} - N_{\mathrm{received}}}{N_{\mathrm{expected}}},
 \]
 which, for the same observation window, is complementary to the PDR used internally by the \emph{SafeSwitch} monitor.

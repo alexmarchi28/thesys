@@ -1,9 +1,9 @@
 \chapter{Conclusions and Future Work}
 \label{ch:conclusions}
 
-This thesis reconstructed and updated a multi-technology V2X architecture for platooning, verifying whether it can be transferred to a more recent toolchain. The main result is that the logic of \emph{SafeSwitch} remains operational even in the new environment: PDR monitoring, \emph{fallback}, and \emph{recovery} preserve the expected qualitative behavior.
+This thesis reconstructed and updated a multi-technology V2X architecture for platooning, assessing whether it can be reproduced on a more recent toolchain. The main result is that the logic of \emph{SafeSwitch} remains operational even in the new environment: PDR monitoring, \emph{fallback}, and \emph{recovery} preserve the expected qualitative behavior.
 
-The most relevant technical contribution is the migration from SimuLTE to Simu5G for the cellular component. The migration required adapting the PLEXE modules without changing the role of the third channel alongside IEEE~802.11p and VLC. The results also confirm that \emph{SafeSwitch} continues to stand out from a \emph{naive} fallback in critical scenarios and that, in the realistic scenario, 5G introduces no functional regressions; if anything, handovers seem to produce less severe transients than the previous LTE stack. Overall, the thesis should be read as an architectural update and an experimental validation of the system's transferability.
+The most relevant technical contribution is the migration from SimuLTE to Simu5G for the cellular component. The migration required adapting the PLEXE modules without changing the role of the third channel alongside IEEE~802.11p and VLC. The results also confirm that \emph{SafeSwitch} continues to outperform a \emph{naive} fallback in critical scenarios and that, in the realistic scenario, 5G introduces no functional regressions; if anything, handovers seem to produce less severe transients than the previous LTE stack. Overall, the thesis should be read as an architectural update and an experimental validation of the system's portability.
 
 \input{chapters/conclusions/conc_implications}
 \input{chapters/conclusions/conc_limits}

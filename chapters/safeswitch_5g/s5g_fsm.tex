@@ -12,7 +12,7 @@ Alongside the stable states there are also states \(G_i\), which represent trans
 \label{fig:fallback-fsm}
 \end{figure}
 
-When all interfaces are available, the platoon can exploit the highest-performance controller and a shorter gap. In the experimental configuration of the paper, this corresponds to using the PATH controller in the state with three operative interfaces, a Ploeg-type controller in intermediate states, and finally ACC as a fallback when cooperation can no longer be sustained \cite{ploeg2011design,ploeg2015graceful,segata2023multi-technology}.
+When all interfaces are available, the platoon can exploit the highest-performance controller and a shorter gap. In the experimental configuration of the paper, this corresponds to using the PATH controller in the state with three active interfaces, a Ploeg-type controller in intermediate states, and finally ACC as a fallback when cooperation can no longer be sustained \cite{ploeg2011design,ploeg2015graceful,segata2023multi-technology}.
 
 The logic is bidirectional. In the event of \emph{failure}, the follower moves down toward more conservative states, associated with lower connectivity and larger safety margins. In the event of \emph{recovery}, by contrast, it can move back up toward higher-performance states, provided that the improvement in communication quality is sufficiently stable.
 

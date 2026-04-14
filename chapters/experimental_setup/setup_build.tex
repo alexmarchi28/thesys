@@ -11,7 +11,7 @@ tar -xvf omnetpp-6.2.0-src-linux.tgz
 cd omnetpp-6.2.0
 
 # Installs dependencies and creates the Python virtualenv
-# Also runs configuration, compilation, and environment import automatically
+# Also runs configuration, compilation, and environment setup automatically
 ./install.sh
 \end{lstlisting}
 
@@ -55,7 +55,7 @@ make makefiles
 make -j <ncores> MODE=release
 make -j <ncores> MODE=debug
 
-# Simu5G (branch indicato da plexe_5g)
+# Simu5G (branch indicated by plexe_5g)
 git clone https://github.com/michele-segata/Simu5G/ simu5g
 cd simu5g/
 git checkout plexe_mec
@@ -65,7 +65,7 @@ make makefiles
 make -j <ncores> MODE=release
 make -j <ncores> MODE=debug
 
-# Veins (+ eventuale sotto-progetto veins_inet)
+# Veins (+ optional veins_inet subproject)
 git clone https://github.com/sommer/veins/
 cd veins/
 git checkout -b veins_v5.3.1 veins-5.3.1
