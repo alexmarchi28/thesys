@@ -1,6 +1,6 @@
-\section{Architettura multi-tecnologia}
+\section{Multi-Technology Architecture}
 \label{sec:s5g_architecture}
 
-Nell'architettura multi-tecnologia utilizzata ogni veicolo del platoon dispone simultaneamente di tre interfacce di comunicazione, 802.11p, VLC e componente cellulare, e i beacon vengono trasmessi in parallelo sulle tecnologie attive. Il follower usa poi le informazioni ricevute dal leader e dal predecessore insieme ai sensori locali per regolare la propria dinamica.
+In the adopted multi-technology architecture, each vehicle in the platoon simultaneously has three communication interfaces, namely 802.11p, VLC, and a cellular component, and beacons are transmitted in parallel over the active technologies. The follower then uses the information received from the leader and the predecessor together with local sensors to regulate its own dynamics.
 
-Il punto fondamentale è che le interfacce non sono trattate come semplice ridondanza passiva. Il numero di tecnologie ritenute affidabili determina infatti quale stato operativo del platoon possa essere mantenuto, e quindi quale controllore e quale gap siano ammissibili in quel momento. La logica di \emph{SafeSwitch} si innesta esattamente su questa relazione tra connettività, controllo e distanza inter-veicolare.
+The key point is that the interfaces are not treated as mere passive redundancy. The number of technologies considered reliable determines which operational state of the platoon can be maintained, and therefore which controller and which gap are admissible at that moment. The logic of \emph{SafeSwitch} is built precisely on this relationship between connectivity, control, and inter-vehicle distance.

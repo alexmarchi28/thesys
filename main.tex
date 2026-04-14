@@ -19,7 +19,7 @@
 \usepackage{csquotes}
 \DeclareQuoteAlias[quotes]{italian}{italian}
 \sisetup{list-final-separator = {, and }}
-\usepackage[italian]{babel}
+\usepackage[main=english,italian]{babel}
 \usepackage[capitalise]{cleveref}
 \crefname{section}{Sect.}{Sect.}
 \crefname{figure}{Fig.}{Fig.}
@@ -123,14 +123,21 @@ captionpos=b
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
     \pagenumbering{gobble}
-    \input{frontespice}
+    \begin{otherlanguage}{italian}
+        \input{frontespice}
+    \end{otherlanguage}
     \cleardoublepage
     \pagenumbering{Roman}
     \setstretch{1.5}
     
-    \input{summary.tex}
+    \begin{otherlanguage}{italian}
+        \input{summary.tex}
+    \end{otherlanguage}
     
-    \newpage
+    \cleardoublepage
+    \input{summary_en.tex}
+
+    \cleardoublepage
     \tableofcontents
     \cleardoublepage
     

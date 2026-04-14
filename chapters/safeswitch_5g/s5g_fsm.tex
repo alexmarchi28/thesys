@@ -1,26 +1,26 @@
-\section{SafeSwitch come macchina a stati}
+\section{SafeSwitch as a State Machine}
 \label{sec:s5g_fsm}
 
-\emph{SafeSwitch} è modellato come una macchina a stati finiti distribuita, eseguita localmente dai follower \cite{segata2023multi-technology}. Gli stati stabili sono indicati con \(F_i\), dove \(i\) rappresenta il numero di interfacce ritenute disponibili. A ciascuno di questi stati è associata una precisa configurazione di marcia, cioè una coppia formata da controllore e gap desiderato.
+\emph{SafeSwitch} is modeled as a distributed finite-state machine, executed locally by the followers \cite{segata2023multi-technology}. The stable states are denoted by \(F_i\), where \(i\) represents the number of interfaces considered available. Each of these states is associated with a specific driving configuration, namely a pair composed of controller and target gap.
 
-Accanto agli stati stabili compaiono gli stati \(G_i\), che rappresentano le fasi di transizione. La presenza di questi stati è uno degli aspetti peculiari di \emph{SafeSwitch}: il sistema riconosce infatti che un cambio di qualità di comunicazione non deve produrre un cambio istantaneo e brutale del comportamento del veicolo. Prima di consolidare il nuovo stato operativo, occorre accompagnare il platoon verso condizioni di distanza compatibili con il controllore che sta per essere usato.
+Alongside the stable states there are also states \(G_i\), which represent transition phases. The presence of these states is one of the distinctive aspects of \emph{SafeSwitch}: the system recognizes that a change in communication quality must not produce an instantaneous and abrupt change in vehicle behavior. Before consolidating the new operational state, the platoon must be guided toward distance conditions that are compatible with the controller that is about to be used.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fallback-fsm.pdf}
-\caption{Meccanismo di Safeswitch come macchina a stati}
+\caption{SafeSwitch mechanism as a state machine}
 \label{fig:fallback-fsm}
 \end{figure}
 
-Quando tutte le interfacce sono disponibili, il platoon può sfruttare il controllore più prestazionale e un gap più contenuto. Nella configurazione sperimentale dell'articolo questo corrisponde all'uso del controllore PATH nello stato con tre interfacce operative, a un controllore di tipo Ploeg negli stati intermedi e infine ad ACC come fallback quando la cooperazione non può più essere sostenuta \cite{ploeg2011design,ploeg2015graceful,segata2023multi-technology}.
+When all interfaces are available, the platoon can exploit the highest-performance controller and a shorter gap. In the experimental configuration of the paper, this corresponds to using the PATH controller in the state with three operative interfaces, a Ploeg-type controller in intermediate states, and finally ACC as a fallback when cooperation can no longer be sustained \cite{ploeg2011design,ploeg2015graceful,segata2023multi-technology}.
 
-La logica è bidirezionale. In caso di \emph{failure} il follower scende verso stati più conservativi, associati a minore connettività e a maggiori margini di sicurezza. In caso di \emph{recovery}, invece, può risalire verso stati più performanti, purché il miglioramento della qualità di comunicazione risulti sufficientemente stabile.
+The logic is bidirectional. In the event of \emph{failure}, the follower moves down toward more conservative states, associated with lower connectivity and larger safety margins. In the event of \emph{recovery}, by contrast, it can move back up toward higher-performance states, provided that the improvement in communication quality is sufficiently stable.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{monitor-fsm.pdf}
-\caption{Monitoraggio PDR e meccanismo di failure/recovery di Safeswitch}
+\caption{PDR monitoring and SafeSwitch failure/recovery mechanism}
 \label{fig:monitor-fsm}
 \end{figure}
 
-Anche il carattere distribuito della macchina a stati è rilevante. Ogni follower prende decisioni in modo locale sulla base dei messaggi che riceve e delle stime di PDR che calcola autonomamente. Il leader resta concettualmente separato da questa logica, perché non deve inseguire un altro veicolo del platoon, mentre i follower sono i nodi che subiscono direttamente l'effetto della qualità della comunicazione sulla propria legge di controllo.
+The distributed nature of the state machine is also relevant. Each follower makes decisions locally on the basis of the messages it receives and of the PDR estimates it computes autonomously. The leader remains conceptually separate from this logic, because it does not have to follow another vehicle in the platoon, whereas the followers are the nodes that directly experience the effect of communication quality on their control law.

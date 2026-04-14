@@ -1,13 +1,13 @@
-\section{OMNeT++: architettura e workflow sperimentale}
+\section{OMNeT++: Architecture and Experimental Workflow}
 \label{env:omnet}
 
-OMNeT++ è il simulatore a eventi discreti che costituisce il nucleo dell’ambiente sperimentale adottato in questa tesi. La sua rilevanza nel contesto della ricerca sulle reti deriva dall’architettura modulare e dal supporto alla composizione gerarchica dei modelli, che consente di descrivere sistemi complessi come insiemi di moduli connessi tra loro tramite messaggi ed eventi temporizzati \cite{varga2008overview}. In ambito V2X, tale modularità è particolarmente utile perché permette di integrare stack di comunicazione, applicazioni, logiche di controllo e interfacce verso simulatori esterni di traffico.
+OMNeT++ is the discrete-event simulator at the core of the experimental environment adopted in this thesis. Its relevance in networking research stems from its modular architecture and support for hierarchical model composition, which make it possible to describe complex systems as collections of modules connected through messages and timed events \cite{varga2008overview}. In the V2X domain, this modularity is particularly useful because it allows the integration of communication stacks, applications, control logic, and interfaces toward external traffic simulators.
 
-Dal punto di vista architetturale, OMNeT++ separa:
+From an architectural point of view, OMNeT++ separates:
 \begin{itemize}
-\item la descrizione strutturale del sistema (topologia di moduli e connessioni), tipicamente espressa tramite file NED;
-\item la logica di comportamento dei moduli, implementata in C++;
-\item la configurazione delle simulazioni e dei parametri sperimentali, gestita tramite file \texttt{omnetpp.ini}.
+\item the structural description of the system, namely module topology and connections, typically expressed through NED files;
+\item the behavioral logic of the modules, implemented in C++;
+\item the configuration of simulations and experimental parameters, managed through \texttt{omnetpp.ini} files.
 \end{itemize}
 
-Questa consente di definire varianti di scenario e di configurazione senza intervenire sul codice sorgente. Nel workflow adottato, OMNeT++ svolge quindi il ruolo di coordinatore dell’intera simulazione: inizializza i moduli, schedula gli eventi, raccoglie le statistiche e gestisce le interazioni con framework esterni come Veins, PLEXE e Simu5G \cite{segata2023multi-technology, nardini2020simu5g}.
+This separation makes it possible to define scenario and configuration variants without modifying the source code. In the adopted workflow, OMNeT++ therefore plays the role of coordinator of the entire simulation: it initializes the modules, schedules events, collects statistics, and manages interactions with external frameworks such as Veins, PLEXE, and Simu5G \cite{segata2023multi-technology, nardini2020simu5g}.

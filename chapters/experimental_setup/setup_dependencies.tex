@@ -1,8 +1,8 @@
-\section{Organizzazione del progetto e dipendenze software}
+\section{Workspace Layout and Dependencies}
 
-La preparazione dell’ambiente è stata eseguita in una directory di lavoro unica, separando i framework principali dai sotto-progetti PLEXE dedicati a VLC e 5G. Questa scelta facilita sia la build incrementale sia la tracciabilità delle versioni usate.
+The environment was prepared in a single working directory, separating the main frameworks from the PLEXE subprojects dedicated to VLC and 5G. This choice facilitates both incremental builds and traceability of the versions used.
 
-\begin{lstlisting}[caption={Layout di riferimento del workspace locale},label={lst:workspace_layout}]
+\begin{lstlisting}[caption={Reference layout of the local workspace},label={lst:workspace_layout}]
 ~/src/
   omnetpp-6.2/
   sumo/
@@ -19,9 +19,9 @@ La preparazione dell’ambiente è stata eseguita in una directory di lavoro uni
       plexe_hetnet/
 \end{lstlisting}
 
-Le dipendenze e le compatibilità di base sono state determinate incrociando: pagina \emph{Building} di Plexe, tutorial ufficiali, README dei sotto-progetti \texttt{plexe\_vlc} e \texttt{plexe\_5g}, repository SUMO e pagina download di OMNeT++ \cite{plexe_building,plexe_tutorial,plexe_vlc_readme,plexe_5g_readme,sumo_repo,omnet_download}. In particolare:
+Basic dependencies and compatibilities were determined by cross-checking the Plexe \emph{Building} page, official tutorials, the README files of the \texttt{plexe\_vlc} and \texttt{plexe\_5g} subprojects, the SUMO repository, and the OMNeT++ download page \cite{plexe_building,plexe_tutorial,plexe_vlc_readme,plexe_5g_readme,sumo_repo,omnet_download}. In particular:
 \begin{itemize}
-\item per SUMO è stato adottato il workflow ``dipendenze dell’ultima versione + checkout della versione 1.20'' prima della compilazione;
-\item per OMNeT++ 6.2 è stato utilizzato lo script \texttt{./install.sh} del pacchetto sorgente, che automatizza dipendenze di sistema, pacchetti Python e virtual environment \cite{omnet_download};
-\item per Veins, Plexe, Simu5G, INET e sotto-progetti Plexe sono state seguite le indicazioni operative ufficiali dei rispettivi README/tutorial \cite{plexe_building,plexe_vlc_readme,plexe_5g_readme}.
+\item for SUMO, the adopted workflow was latest-version dependencies plus checkout of version 1.20 before compilation;
+\item for OMNeT++ 6.2, the \texttt{./install.sh} script from the source package was used, which automates system dependencies, Python packages, and virtual environment setup \cite{omnet_download};
+\item for Veins, Plexe, Simu5G, INET, and the Plexe subprojects, the official operational instructions from the respective README files and tutorials were followed \cite{plexe_building,plexe_vlc_readme,plexe_5g_readme}.
 \end{itemize}

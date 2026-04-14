@@ -1,15 +1,15 @@
-\section{Validazione ambiente di sviluppo}
+\section{Validation of the Development Environment}
 
-La validazione iniziale è stata impostata come \emph{smoke test} progressivo: prima esempi base Plexe/Veins, poi scenari con eterogeneità di interfacce, infine verifica dei sotto-progetti.
+Initial validation was set up as a progressive \emph{smoke test}: first basic Plexe and Veins examples, then scenarios with heterogeneous interfaces, and finally verification of the subprojects.
 
-I tutorial ufficiali forniscono configurazioni utili per un controllo rapido della pipeline end-to-end \cite{plexe_tutorial,plexe_example6}. I comandi utilizzati sono del tipo:
+The official tutorials provide configurations that are useful for a quick end-to-end pipeline check \cite{plexe_tutorial,plexe_example6}. The commands used are of the following type:
 
-\begin{lstlisting}[caption={Esecuzione di scenari tutorial da CLI (Cmdenv)},label={lst:smoke_commands}]
+\begin{lstlisting}[caption={Execution of tutorial scenarios from the CLI (Cmdenv)},label={lst:smoke_commands}]
 # Test Plexe / Veins (802.11p)
 cd /path/to/plexe/examples/platooning
 plexe_run -u Cmdenv -c Sinusoidal -r 2
 
-Test plexe_vlc
+# Test plexe_vlc
 cd /path/to/plexe/subprojects/plexe_vlc/examples/plexe_vlc
 ./run -u Cmdenv -c Sinusoidal -r 0
 
@@ -21,10 +21,10 @@ cd ../platooning_mec
 
 \end{lstlisting}
 
-In questa fase la verifica non è solo ``la simulazione parte'', ma include:
+At this stage, the verification is not only that the simulation starts, but also includes:
 \begin{itemize}
-\item verifica della comunicazione intra-platoon utilizzando il debugger presente in OMNeT++;
-\item handshake corretto TraCI tra OMNeT++ e SUMO;
-\item generazione dei file \texttt{.sca}/\texttt{.vec} e log coerenti con la configurazione selezionata;
-\item comportamento dinamico plausibile del platoon.
+\item verification of intra-platoon communication by using the debugger available in OMNeT++;
+\item correct TraCI handshake between OMNeT++ and SUMO;
+\item generation of \texttt{.sca}/\texttt{.vec} files and logs coherent with the selected configuration;
+\item plausible dynamic behavior of the platoon.
 \end{itemize}

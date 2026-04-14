@@ -1,12 +1,12 @@
-\chapter{Analisi dei Risultati}
+\chapter{Results Analysis}
 \label{ch:results}
 
-Questo capitolo valuta il comportamento della reimplementazione descritta nel Capitolo~\ref{ch:safeswitch_5g}, con due obiettivi complementari. Da un lato si vuole verificare che la logica di \emph{SafeSwitch} riproduca il comportamento qualitativo atteso negli scenari artificiali più significativi; dall'altro si vuole capire in che misura il passaggio da SimuLTE a Simu5G modifichi i risultati nello scenario più realistico, dove interferenze, handover e modelli di canale interagiscono con la dinamica del platoon.
+This chapter evaluates the behavior of the reimplementation described in Chapter~\ref{ch:safeswitch_5g}, with two complementary objectives. On the one hand, it aims to verify that the logic of \emph{SafeSwitch} reproduces the expected qualitative behavior in the most significant artificial scenarios; on the other hand, it seeks to understand to what extent the transition from SimuLTE to Simu5G changes the results in the more realistic scenario, where interference, handovers, and channel models interact with platoon dynamics.
 
-L'analisi è organizzata in tre passaggi. Si considera anzitutto il confronto con un fallback \emph{naive}, così da mettere in evidenza il ruolo della fase di \emph{gap control}. Si passa poi allo scenario realistico con interferenze su IEEE~802.11p e handover cellulari, confrontando i risultati ottenuti con quelli dell'articolo di riferimento \cite{segata2023multi-technology}. Infine si discutono la sensibilità dei risultati ai fenonemi di fading e shadowing e i limiti dell'interpretazione quantitativa.
+The analysis is organized into three steps. It first considers the comparison with a \emph{naive} fallback, in order to highlight the role of the \emph{gap control} phase. It then moves to the realistic scenario with interference on IEEE~802.11p and cellular handovers, comparing the obtained results with those reported in the reference paper \cite{segata2023multi-technology}. Finally, it discusses the sensitivity of the results to fading and shadowing phenomena and the limits of quantitative interpretation.
 
-Nei grafici, i simboli \(\times\) e \(+\) indicano rispettivamente eventi di \emph{failure} e \emph{recovery}, mentre le bande grigie evidenziano gli intervalli di handover cellulare. Quando si analizza la qualità del collegamento si utilizza la \emph{Frame Error Rate} (FER), definita come
+In the plots, the symbols \(\times\) and \(+\) indicate \emph{failure} and \emph{recovery} events respectively, while the gray bands highlight the cellular handover intervals. When link quality is analyzed, the \emph{Frame Error Rate} (FER) is used, defined as
 \[
 \mathrm{FER} = \frac{N_{\mathrm{attesi}} - N_{\mathrm{ricevuti}}}{N_{\mathrm{attesi}}},
 \]
-che, a parità di finestra osservata, è complementare al PDR usato internamente dal monitor di \emph{SafeSwitch}.
+which, for the same observation window, is complementary to the PDR used internally by the \emph{SafeSwitch} monitor.

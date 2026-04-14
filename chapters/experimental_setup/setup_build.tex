@@ -1,50 +1,50 @@
-\section{Compilazione e configurazione dell’ambiente}
+\section{Compilation and Configuration of the Environment}
 
-La sequenza di build adottata è riportata in questa sezione in forma riproducibile. L’ordine è importante perché alcuni progetti richiedono artefatti compilati da dipendenze precedenti.
+The adopted build sequence is reported in this section in reproducible form. The order is important because some projects require artifacts compiled from previous dependencies.
 
 \subsection{OMNeT++ 6.2}
 
-Per OMNeT++ è stato seguito il flusso ufficiale basato su \texttt{install.sh} e successiva compilazione locale \cite{omnet_download,omnet_versions}. Un esempio minimale è riportato di seguito.
+For OMNeT++, the official workflow based on \texttt{install.sh} and subsequent local compilation was followed \cite{omnet_download,omnet_versions}. A minimal example is reported below.
 
-\begin{lstlisting}[caption={Installazione e build OMNeT++ 6.2},label={lst:omnet_build}]
+\begin{lstlisting}[caption={OMNeT++ 6.2 installation and build},label={lst:omnet_build}]
 tar -xvf omnetpp-6.2.0-src-linux.tgz
 cd omnetpp-6.2.0
 
-# Installa dipendenze e crea il virtualenv Python
-# Esegue in automatico anche configurazione, compilazione e importazione delle variabili d'ambiente
+# Installs dependencies and creates the Python virtualenv
+# Also runs configuration, compilation, and environment import automatically
 ./install.sh
 \end{lstlisting}
 
-\subsection{SUMO 1.20 con dipendenze aggiornate}
+\subsection{SUMO 1.20 with updated dependencies}
 
-Il workflow usato in tesi è stato:
+The workflow used in the thesis was:
 \begin{enumerate}
-\item installare le dipendenze indicate dal repository SUMO corrente;
-\item fare checkout della versione 1.20;
-\item compilare da sorgente con CMake.
+\item install the dependencies indicated by the current SUMO repository;
+\item check out version 1.20;
+\item compile from source with CMake.
 \end{enumerate}
 
-\begin{lstlisting}[caption={Build SUMO 1.20 con dipendenze dal repository ufficiale},label={lst:sumo_build}]
+\begin{lstlisting}[caption={Build of SUMO 1.20 with dependencies from the official repository},label={lst:sumo_build}]
 git clone https://github.com/eclipse-sumo/sumo.git
 cd sumo
 
-# Dipendenze (repository ufficiale SUMO)
+# Dependencies (official SUMO repository)
 sudo apt-get install \$(cat build_config/build_req_deb.txt build_config/tools_req_deb.txt)
 
-# Passaggio alla versione 1.20 (v1.20 nome arbitrario per il branch creato)
+# Switch to version 1.20 (v1.20 is an arbitrary name for the created branch)
 git checkout -b v1.20 v1\_20\_0
 
-# Compilazione
+# Compilation
 cmake -B build .
 cmake --build build -j$(nproc)
 
 \end{lstlisting}
 
-\subsection{INET, Simu5G, Veins, Plexe e sotto-progetti}
+\subsection{INET, Simu5G, Veins, Plexe, and Subprojects}
 
-Per gli altri componenti è stata seguita la documentazione ufficiale, con particolare riferimento alle istruzioni di \texttt{plexe\_5g} per la catena INET $\rightarrow$ Simu5G $\rightarrow$ Veins $\rightarrow$ Plexe \cite{plexe_5g_readme,plexe_building}.
+For the other components, the official documentation was followed, with particular reference to the instructions in \texttt{plexe\_5g} for the INET $\rightarrow$ Simu5G $\rightarrow$ Veins $\rightarrow$ Plexe chain \cite{plexe_5g_readme,plexe_building}.
 
-\begin{lstlisting}[caption={Sequenza di compilazione dei framework OMNeT++ based},label={lst:framework_build}]
+\begin{lstlisting}[caption={Build sequence of the OMNeT++-based frameworks},label={lst:framework_build}]
 # INET
 git clone https://github.com/inet-framework/inet
 cd inet/

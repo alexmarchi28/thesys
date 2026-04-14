@@ -1,17 +1,17 @@
-\section{Simulazione a eventi discreti per reti veicolari}
+\section{Discrete-Event Simulation for Vehicular Networks}
 \label{env:discrete_event}
 
-La simulazione a eventi discreti (DES, \emph{Discrete Event Simulation}) è il paradigma più utilizzato per lo studio di protocolli di rete e sistemi distribuiti complessi, poiché consente di rappresentare l’evoluzione del sistema come sequenza ordinata di eventi temporizzati. In tale paradigma, il tempo simulato avanza da un evento al successivo (trasmissione, ricezione, timeout, aggiornamento di stato, ecc.), evitando un aggiornamento uniforme a passo fisso dell’intero sistema quando non necessario \cite{varga2008overview}. Questo approccio è particolarmente adatto ai sistemi V2X, in cui coesistono eventi di rete molto frequenti e eventi di mobilità/controllo su scale temporali differenti.
+Discrete-event simulation (DES) is the most widely used paradigm for studying network protocols and complex distributed systems, because it represents system evolution as an ordered sequence of timed events. In this paradigm, simulated time advances from one event to the next, such as transmission, reception, timeout, or state update, thus avoiding a uniform fixed-step update of the whole system when that is not needed \cite{varga2008overview}. This approach is particularly suited to V2X systems, where very frequent network events coexist with mobility and control events evolving on different time scales.
 
-Nel caso del platooning cooperativo, la DES è utile perché permette di modellare in modo esplicito l’interazione tra:
+In the case of cooperative platooning, DES is useful because it makes it possible to model explicitly the interaction among:
 \begin{itemize}
-\item la generazione periodica di messaggi di controllo e beacon;
-\item la contesa per il canale e le perdite di pacchetto;
-\item i timeout e i meccanismi di \emph{fallback}/\emph{recovery};
-\item l’aggiornamento della dinamica del veicolo e del controllore.
+\item the periodic generation of control messages and beacons;
+\item channel contention and packet losses;
+\item timeouts and \emph{fallback}/\emph{recovery} mechanisms;
+\item updates of vehicle dynamics and controller state.
 \end{itemize}
-L’aspetto cruciale non è soltanto simulare bene la rete oppure la mobilità, ma preservare la coerenza temporale tra i due domini, così da misurare l’effetto delle condizioni di comunicazione sul comportamento del platoon.
+The crucial aspect is not only to simulate the network or the mobility accurately, but to preserve temporal coherence between the two domains, so as to measure the effect of communication conditions on platoon behavior.
 
-Rispetto a una modellazione puramente analitica o a simulazioni separate (rete da una parte, traffico dall’altra), una DES accoppiata consente di osservare effetti emergenti difficilmente catturabili con modelli semplificati: ad esempio degradazioni della stabilità dovute a burst di perdite, impatti degli handover sulla continuità della comunicazione, oppure retroazioni tra aumento della distanza di sicurezza e qualità del link disponibile. Questo è precisamente il tipo di fenomeni che motivano l’uso di toolchain integrate nelle ricerche su cooperative driving e platooning \cite{sommer2011bidirectionally,segata2014plexe,segata2023multi-technology}.
+Compared with a purely analytical model or separate simulations, with networking on one side and traffic on the other, a coupled DES makes it possible to observe emergent effects that are difficult to capture with simplified models: for instance, stability degradation due to bursts of losses, the impact of handovers on communication continuity, or feedback loops between increased safety distance and available link quality. This is precisely the type of phenomenon that motivates the use of integrated toolchains in cooperative driving and platooning research \cite{sommer2011bidirectionally,segata2014plexe,segata2023multi-technology}.
 
-In questa tesi, la simulazione a eventi discreti costituisce quindi il livello di orchestrazione su cui vengono innestati i modelli di rete (OMNeT++ con relative estensioni), la mobilità stradale microscopica (SUMO) e la logica di platooning.
+In this thesis, discrete-event simulation therefore provides the orchestration layer on top of which the network models, namely OMNeT++ with its extensions, the microscopic road mobility model in SUMO, and the platooning logic are integrated.

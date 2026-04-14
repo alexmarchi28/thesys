@@ -1,30 +1,30 @@
-\section{Riproducibilità degli esperimenti}
+\section{Reproducibility of the Experiments}
 \label{env:reproducibility}
 
-La riproducibilità è un requisito metodologico centrale per una tesi sperimentale basata su simulazione, in particolare quando il contributo consiste nell’aggiornare una toolchain complessa e nel re-implementare una logica già pubblicata in letteratura. In questo contesto, la riproducibilità non coincide soltanto con la possibilità di ottenere “un risultato qualitativamente simile”, ma richiede che configurazioni, parametri, versioni software e pipeline di esecuzione siano sufficientemente tracciati da consentire un confronto affidabile tra esperimenti.
+Reproducibility is a central methodological requirement for a simulation-based experimental thesis, especially when the contribution consists of updating a complex toolchain and re-implementing logic that has already been published in the literature. In this context, reproducibility is not limited to the possibility of obtaining a qualitatively similar result, but requires configurations, parameters, software versions, and execution pipelines to be tracked well enough to enable a reliable comparison among experiments.
 
-Nel caso specifico di una co-simulazione OMNeT++/SUMO, le principali fonti di non-riproducibilità sono:
+For OMNeT++/SUMO co-simulation, the main reproducibility issues are:
 \begin{itemize}
-\item differenze di versione tra framework e dipendenze;
-\item variazioni non documentate nei file di configurazione (\texttt{omnetpp.ini}, NED, scenari SUMO);
-\item gestione incoerente dei seed casuali e del numero di repliche;
-\item modifiche al codice non isolate o non tracciate;
-\item pipeline manuali di esecuzione/post-processing difficili da replicare.
+\item version differences among frameworks and dependencies;
+\item undocumented changes in configuration files, such as \texttt{omnetpp.ini}, NED, and SUMO scenarios;
+\item inconsistent management of random seeds and the number of replicas;
+\item code modifications that are not isolated or not tracked;
+\item manual execution and post-processing pipelines that are difficult to replicate.
 \end{itemize}
-Per questa ragione, il presente lavoro adotta una distinzione esplicita tra:
+For this reason, the present work adopts an explicit distinction between:
 \begin{itemize}
-\item ambiente di sviluppo (descritto in questo capitolo), ossia strumenti e ruoli dei componenti;
-\item ambiente sperimentale concreto (descritto nel capitolo successivo), ossia organizzazione del progetto, build, configurazioni e validazioni operative.
+\item the development environment, described in this chapter, namely the tools and roles of the components;
+\item the concrete experimental environment, described in the next chapter, namely project organization, build process, configurations, and operational validation.
 \end{itemize}
 
-Dal punto di vista pratico, una strategia di riproducibilità efficace per questo tipo di tesi include almeno i seguenti elementi:
+From a practical point of view, an effective reproducibility strategy for this type of thesis includes at least the following elements:
 \begin{itemize}
-\item identificazione precisa delle versioni dei framework utilizzati;
-\item separazione tra codice sorgente modificato e file di configurazione degli esperimenti;
-\item definizione di scenari e parametri in forma parametrica e documentata;
-\item automazione delle esecuzioni ripetute e della raccolta degli output;
-\item archiviazione delle metriche grezze insieme ai metadati di run (seed, scenario, timestamp, configurazione).
+\item precise identification of the versions of the frameworks used;
+\item separation between modified source code and experiment configuration files;
+\item definition of scenarios and parameters in documented parametric form;
+\item automation of repeated executions and output collection;
+\item storage of raw metrics together with run metadata, such as seed, scenario, timestamp, and configuration.
 \end{itemize}
-Questi aspetti non sono meri dettagli implementativi: influenzano direttamente la credibilità dei risultati e la possibilità di interpretare correttamente eventuali differenze rispetto all'articolo di riferimento.
+These aspects are not mere implementation details: they directly affect the credibility of the results and the possibility of correctly interpreting any differences with respect to the reference paper.
 
-Infine, la riproducibilità ha in questa tesi anche una valenza scientifica specifica. Poiché il lavoro consiste in una re-implementazione/aggiornamento di un sistema multi-tecnologia con nuove versioni dei framework e con 5G al posto di LTE, la documentazione accurata dell’ambiente e del workflow è parte integrante del contributo: consente di distinguere ciò che dipende dalla logica studiata (ad es.\ \emph{SafeSwitch}) da ciò che dipende dall’infrastruttura simulativa e dalle sue configurazioni.
+Finally, reproducibility also has a specific scientific meaning in this thesis. Since the work consists of a re-implementation and update of a multi-technology system with newer framework versions and with 5G instead of LTE, accurate documentation of the environment and the workflow is an integral part of the contribution: it makes it possible to distinguish what depends on the logic under study, for example \emph{SafeSwitch}, from what depends on the simulation infrastructure and its configurations.

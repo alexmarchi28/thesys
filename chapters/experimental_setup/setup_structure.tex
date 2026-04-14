@@ -1,15 +1,15 @@
-\section{Struttura delle simulazioni (NED, INI, SUMO)}
+\section{Simulation Structure (NED, INI, SUMO)}
 
-Una volta completata la compilazione, la configurazione sperimentale è stata organizzata lungo tre assi:
+Once compilation was completed, the experimental configuration was organized along three axes:
 \begin{itemize}
-\item topologia e moduli OMNeT++ (file NED);
-\item parametrizzazione degli esperimenti (file \texttt{omnetpp.ini});
-\item mobilità microscopica (file SUMO: \texttt{.sumocfg}, \texttt{.net.xml}, \texttt{.rou.xml}).
+\item OMNeT++ topology and modules, namely NED files;
+\item experiment parametrization, namely \texttt{omnetpp.ini} files;
+\item microscopic mobility, namely SUMO files such as \texttt{.sumocfg}, \texttt{.net.xml}, and \texttt{.rou.xml}.
 \end{itemize}
 
-La separazione tra questi livelli consente di modificare scenari e politiche senza alterare il codice C++ dei moduli.
+The separation among these levels makes it possible to modify scenarios and policies without altering the C++ code of the modules.
 
-\begin{lstlisting}[caption={Schema semplificato di rete NED per co-simulazione},label={lst:ned_skeleton}]
+\begin{lstlisting}[caption={Simplified NED network skeleton for co-simulation},label={lst:ned_skeleton}]
 network PlatooningScenario
 {
     submodules:
@@ -19,7 +19,7 @@ network PlatooningScenario
 }
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Estratto tipo di configurazione INI multi-interfaccia},label={lst:ini_skeleton}]
+\begin{lstlisting}[caption={Typical excerpt of a multi-interface INI configuration},label={lst:ini_skeleton}]
 [General]
 network = PlatooningScenario
 sim-time-limit = 200s
@@ -34,7 +34,7 @@ output-scalar-file = ${resultdir}/${configname}-${runnumber}.sca
 output-vector-file = ${resultdir}/${configname}-${runnumber}.vec
 \end{lstlisting}
 
-\begin{lstlisting}[caption={Estratto tipo di configurazione SUMO},label={lst:sumo_cfg_skeleton}]
+\begin{lstlisting}[caption={Typical excerpt of a SUMO configuration},label={lst:sumo_cfg_skeleton}]
 <configuration>
   <input>
     <net-file value="highway.net.xml"/>
@@ -46,4 +46,4 @@ output-vector-file = ${resultdir}/${configname}-${runnumber}.vec
 </configuration>
 \end{lstlisting}
 
-Nel workflow adottato, la coerenza tra i file INI e la configurazione SUMO — in particolare per quanto riguarda gli identificativi dei veicoli, la durata della simulazione e il passo temporale — è fondamentale per evitare che la simulazione si avvii correttamente ma produca traiettorie o metriche scorrette.
+In the adopted workflow, consistency between the INI files and the SUMO configuration, especially with regard to vehicle identifiers, simulation duration, and time step, is essential to avoid a situation in which the simulation starts correctly but produces incorrect trajectories or metrics.

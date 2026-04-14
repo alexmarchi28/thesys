@@ -1,9 +1,9 @@
-\chapter{Conclusioni e sviluppi futuri}
+\chapter{Conclusions and Future Work}
 \label{ch:conclusions}
 
-Questa tesi ha ricostruito e aggiornato un'architettura V2X multi-tecnologia per il platooning, verificandone la trasferibilità a una toolchain più recente. Il risultato principale è che la logica di \emph{SafeSwitch} resta operativa anche nel nuovo ambiente: monitoraggio del PDR, \emph{fallback} e \emph{recovery} mantengono il comportamento qualitativo atteso.
+This thesis reconstructed and updated a multi-technology V2X architecture for platooning, verifying whether it can be transferred to a more recent toolchain. The main result is that the logic of \emph{SafeSwitch} remains operational even in the new environment: PDR monitoring, \emph{fallback}, and \emph{recovery} preserve the expected qualitative behavior.
 
-Il contributo tecnico più rilevante è il passaggio da SimuLTE a Simu5G per la componente cellulare. La migrazione ha richiesto l'adattamento dei moduli di PLEXE senza cambiare il ruolo del terzo canale accanto a IEEE~802.11p e VLC. I risultati confermano inoltre che \emph{SafeSwitch} continua a distinguersi da un fallback \emph{naive} negli scenari critici e che, nello scenario realistico, il 5G non introduce regressioni funzionali; anzi, gli handover sembrano produrre transitori meno severi del precedente stack LTE. Nel complesso, la tesi va letta come un aggiornamento architetturale e una validazione sperimentale della trasferibilità del sistema.
+The most relevant technical contribution is the migration from SimuLTE to Simu5G for the cellular component. The migration required adapting the PLEXE modules without changing the role of the third channel alongside IEEE~802.11p and VLC. The results also confirm that \emph{SafeSwitch} continues to stand out from a \emph{naive} fallback in critical scenarios and that, in the realistic scenario, 5G introduces no functional regressions; if anything, handovers seem to produce less severe transients than the previous LTE stack. Overall, the thesis should be read as an architectural update and an experimental validation of the system's transferability.
 
 \input{chapters/conclusions/conc_implications}
 \input{chapters/conclusions/conc_limits}
