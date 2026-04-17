@@ -1,3 +1,5 @@
 \section{Implicazioni per sistemi V2X reali}
 
 Il passaggio a 5G rende il lavoro rilevante anche oltre il solo aggiornamento del simulatore. In ambito 3GPP, V2X Release 16 nasce proprio per utilizzare 5G NR. Per questo, modellare la componente cellulare con Simu5G significa spostare l'ambiente sperimentale verso la direzione più attuale dell'evoluzione V2X.
+
+In applicazioni V2X reali, infatti, il problema raramente coincide con un guasto totale e definitivo di una tecnologia; più spesso si osservano degradazioni parziali, intermittenti e dipendenti dal contesto, come interferenze radio, perdita della linea di vista o brevi interruzioni durante gli handover. La tesi è importante proprio perché evidenzia come un'architettura multi-tecnologia possa reagire a questi eventi senza collassare immediatamente verso una modalità minima di funzionamento. Il fatto che \emph{SafeSwitch} mantenga un comportamento qualitativamente corretto anche nel nuovo stack suggerisce che strategie di \emph{graceful degradation} siano una componente necessaria per portare il platooning fuori da scenari ideali e verso sistemi più credibili dal punto di vista operativo.
