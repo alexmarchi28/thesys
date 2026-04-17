@@ -1,0 +1,24 @@
+\section{Riproduzione dei risultati}
+
+Di seguito sono riportati i passaggi per eseguire le simulazioni della tesi e generare i grafici finali.
+
+\begin{lstlisting}[caption={Workflow bash per la riproduzione dei risultati},label={lst:campaign_workflow}]
+# Run batch simulations
+cd $PLEXE_DIR/subprojects/plexe_hetnet/examples/platooning_hetnet
+generateRunsFile.pl | grep "NoGui" > runs
+time runmaker4.py -j 0 runs
+
+# Pre-process results
+cd analysis/
+./genmakefile.py parse-config > Makefile
+make -j $(nproc) InterferenceScenarioHandovers.Rdata \
+    InterferenceScenarioDynamics.Rdata \
+    InterferenceScenarioEvents.Rdata \
+    InterferenceScenarioFER.Rdata
+
+# Plot figures
+cd dynamics-plots/
+Rscript plot-dynamics.R
+Rscript plot-fer.R
+Rscript plot-legend.R
+\end{lstlisting}

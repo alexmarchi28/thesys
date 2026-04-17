@@ -9,7 +9,7 @@ I tutorial ufficiali forniscono configurazioni utili per un controllo rapido del
 cd /path/to/plexe/examples/platooning
 plexe_run -u Cmdenv -c Sinusoidal -r 2
 
-Test plexe_vlc
+# Test plexe_vlc
 cd /path/to/plexe/subprojects/plexe_vlc/examples/plexe_vlc
 ./run -u Cmdenv -c Sinusoidal -r 0
 
@@ -21,10 +21,4 @@ cd ../platooning_mec
 
 \end{lstlisting}
 
-In questa fase la verifica non è solo ``la simulazione parte'', ma include:
-\begin{itemize}
-\item verifica della comunicazione intra-platoon utilizzando il debugger presente in OMNeT++;
-\item handshake corretto TraCI tra OMNeT++ e SUMO;
-\item generazione dei file \texttt{.sca}/\texttt{.vec} e log coerenti con la configurazione selezionata;
-\item comportamento dinamico plausibile del platoon.
-\end{itemize}
+Questi \emph{smoke test} consentono di verificare che la toolchain sia operativa prima di eseguire la campagna completa e rigenerare i risultati sperimentali descritti nella sezione successiva.
